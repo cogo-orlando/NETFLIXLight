@@ -6,6 +6,8 @@ body {
     padding: 20px;
 }
 
+h1, h2 { margin-bottom: 20px; }
+
 #films-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -13,44 +15,29 @@ body {
     justify-items: center;
 }
 
-.film-btn {
-    cursor: pointer;
+.film-card img {
+    width: 100%;
+    border-radius: 5px;
     transition: transform 0.2s;
 }
 
-.film-btn:hover {
+.film-card img:hover {
     transform: scale(1.05);
 }
 
-.film-btn img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.film-btn p {
-    font-size: 0.85rem;
-    margin: 5px 0 0 0;
-}
-
-#film-detail {
-    max-width: 600px;
-    margin: 20px auto;
-    text-align: left;
-}
-
-/* Dans style.css ou details.css */
 #film-detail img {
-    width: 100%;      /* prend toute la largeur disponible du conteneur */
-    max-width: 200px; /* réduit la taille maximale à 200px */
-    border-radius: 5px;
-    display: block;
+    max-width: 200px;
+    border-radius: 10px;
     margin-bottom: 15px;
 }
 
-#film-detail h2 {
-    margin: 10px 0;
+form input {
+    margin: 5px 0;
+    padding: 8px;
+    width: 200px;
 }
 
-#film-detail p {
-    margin: 5px 0;
+form button {
+    padding: 8px 15px;
+    margin-top: 10px;
 }
