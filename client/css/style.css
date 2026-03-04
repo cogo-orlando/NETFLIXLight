@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #141414;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+#films-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+.film-btn {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.film-btn:hover {
+    transform: scale(1.05);
+}
+
+.film-btn img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.film-btn p {
+    font-size: 0.85rem;
+    margin: 5px 0 0 0;
+}
+
+#film-detail {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+/* Dans style.css ou details.css */
+#film-detail img {
+    width: 100%;      /* prend toute la largeur disponible du conteneur */
+    max-width: 200px; /* réduit la taille maximale à 200px */
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+#film-detail h2 {
+    margin: 10px 0;
+}
+
+#film-detail p {
+    margin: 5px 0;
+}

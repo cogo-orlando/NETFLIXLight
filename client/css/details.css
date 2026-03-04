@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #fff;
+    padding: 20px;
+}
+
+#film-detail {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#film-detail img {
+    width: auto;       /* largeur auto pour garder le ratio */
+    height: 300px;     /* hauteur fixe */
+    max-width: 100%;   /* ne dépasse pas la taille du conteneur */
+    object-fit: cover; /* garde le ratio */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#film-detail h2 {
+    margin: 10px 0;
+}
+
+#film-detail p {
+    margin: 5px 0;
+}

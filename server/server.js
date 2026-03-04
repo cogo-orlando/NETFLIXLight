@@ -35,8 +35,47 @@ app.get('/api/trending', async (req, res) => {
     }
 });
 
+app.get('/api/movie/:id', async (req, res) => {
+    const movieId = req.params.id;
+
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.TMDB_API_KEY}&language=fr-FR`
+        );
+        const film = await response.json();
+
+        const creditsResp = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.TMDB_API_KEY}`
+        );
+        const creditsData = await creditsResp.json();
+
+        const acteurs = creditsData.cast
+            .slice(0, 5)
+            .map(a => a.name);
+
+        res.json({
+            id: film.id,
+            titre: film.title,
+            synopsis: film.overview,
+            poster: film.poster_path
+                ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+                : null,
+            date_sortie: film.release_date,
+            note: film.vote_average,
+            genres: film.genres.map(g => g.name),
+            acteurs: acteurs
+        });
+
+    } catch (error) {
+        console.error("Erreur détail serveur :", error);
+        res.status(500).json({ error: "Impossible de récupérer le film" });
+    }
+});
+
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 // Sert les fichiers statiques du client
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client/')));
 
 // Démarre le serveur et ouvre le navigateur sur index.html
 app.listen(PORT, async () => {
