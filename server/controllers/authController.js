@@ -31,4 +31,10 @@ async function loginUser(req, res) {
     res.json({ message: "Connexion réussie", user: { email, pseudo: user.pseudo } });
 }
 
-module.exports = { registerUser, loginUser };
+// ← AJOUT
+function logoutUser(req, res) {
+    req.session.destroy();
+    res.json({ success: true });
+}
+
+module.exports = { registerUser, loginUser, logoutUser };
