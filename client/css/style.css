@@ -1,43 +1,235 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #141414;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --gold: #e50404;
+    --gold-light: rgb(246, 29, 29);
+    --dark: #0a0a0a;
+    --dark-card: rgba(10, 10, 10, 0.72);
+    --text: #f0ece0;
+    --text-muted: #f6f5f2;
 }
 
-h1, h2 { margin-bottom: 20px; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    text-align: center;
+    padding: 48px 24px;
+    min-height: 100vh;
+}
+
+/* Fond flouté sombre */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("../image/logo.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(2px) brightness(0.3);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+/* Grain cinématique */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* Titre principal */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-shadow: 0 4px 30px rgba(250, 250, 250, 0.5);
+    animation: fadeDown 0.8s ease both;
+}
+
+/* Trait doré sous le titre */
+h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 16px auto 0;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 48px;
+    opacity: 0.8;
+    animation: fadeDown 0.9s ease both;
+}
+
+/* Lien navigation haut gauche */
+a {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+    opacity: 0.8;
+}
+
+a:hover {
+    color: var(--gold-light);
+    opacity: 1;
+    gap: 10px;
+}
+
+/* Grille de films */
 #films-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
     justify-items: center;
+    margin-top: 16px;
+    animation: fadeUp 1s ease both;
+}
+
+/* Carte film */
+.film-card {
+    width: 100%;
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.film-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+    border-color: rgb(229, 4, 4);
 }
 
 .film-card img {
     width: 100%;
-    border-radius: 5px;
-    transition: transform 0.2s;
+    display: block;
+    border-radius: 0;
+    transition: filter 0.3s ease;
 }
 
-.film-card img:hover {
-    transform: scale(1.05);
+/* Overlay titre au hover */
+.film-card .film-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px 12px;
+    background: linear-gradient(to top, rgba(241, 6, 6, 0.85) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-#film-detail img {
-    max-width: 200px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+.film-card:hover .film-overlay {
+    opacity: 1;
+}
+
+.film-card .film-overlay span {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    text-align: left;
+}
+
+form {
+    background: var(--dark-card);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 3px;
+    padding: 32px;
+    max-width: 360px;
+    margin: 0 auto;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: fadeUp 0.8s ease both;
 }
 
 form input {
-    margin: 5px 0;
-    padding: 8px;
-    width: 200px;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 2px;
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+form input:focus {
+    border-color: var(--gold);
+    background: rgba(201, 168, 76, 0.06);
+}
+
+form input::placeholder {
+    color: var(--text-muted);
+    font-weight: 300;
 }
 
 form button {
-    padding: 8px 15px;
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201, 168, 76, 0.5);
+}
+
+/* Animations */
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }

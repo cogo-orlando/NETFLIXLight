@@ -12,9 +12,7 @@ fetch('/api/trending')
                 <a href="details.html?id=${film.id}">
                     <img src="${film.poster}" alt="${film.titre}">
                 </a>
-                <h3>${film.titre}</h3>
-                <p>Note: ${film.note}</p>
-                <p>Sortie: ${film.date_sortie}</p>
+                <h3>${film.titre}</h3>          
             `;
             container.appendChild(div);
         });
