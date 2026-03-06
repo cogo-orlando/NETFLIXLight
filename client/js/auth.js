@@ -1,4 +1,3 @@
-// client/js/auth.js
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
 
@@ -19,6 +18,12 @@ if (registerForm) {
             });
             const result = await res.json();
             document.getElementById('register-message').textContent = result.message || result.error;
+
+            // ← AJOUT : sauvegarde et redirection si succès
+            if (result.user) {
+                sessionStorage.setItem('user', JSON.stringify(result.user));
+                window.location.href = '/';
+            }
         } catch (err) {
             console.error(err);
             document.getElementById('register-message').textContent = 'Erreur serveur';
@@ -42,7 +47,10 @@ if (loginForm) {
             });
             const result = await res.json();
             document.getElementById('login-message').textContent = result.message || result.error;
+
+            // ← AJOUT : sauvegarde avant redirection
             if (result.user) {
+                sessionStorage.setItem('user', JSON.stringify(result.user));
                 window.location.href = '/';
             }
         } catch (err) {

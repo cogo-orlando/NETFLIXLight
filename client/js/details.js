@@ -16,6 +16,11 @@ if (!id) {
                 <p><strong>Genres :</strong> ${film.genres?.join(", ")}</p>
                 <p><strong>Acteurs :</strong> ${film.acteurs?.join(", ")}</p>
                 <p><strong>Description :</strong> ${film.synopsis}</p>
+                <a class="btn-trailer" 
+       href="https://www.youtube.com/results?search_query=${encodeURIComponent(film.titre)}+bande+annonce+officielle" 
+       target="_blank">
+        ▶ Bande annonce
+    </a>
             `;
         })
         .catch(err => {
