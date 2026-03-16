@@ -20,7 +20,6 @@ body {
     font-weight: 300;
     color: var(--text);
     text-align: center;
-    padding: 48px 24px;
     min-height: 100vh;
 }
 
@@ -215,12 +214,12 @@ form button {
     border-radius: 2px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+    box-shadow: 0 4px 20px rgb(245, 8, 8);
 }
 
 form button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(201, 168, 76, 0.5);
+    box-shadow: 0 8px 28px rgb(241, 8, 8);
 }
 
 /* Animations */
@@ -244,7 +243,7 @@ form button:hover {
 }
 
 .favorite-btn.active{
-    color:gold;
+    color: #ef0000;
 }
 
 .favorite-btn:hover {
@@ -273,4 +272,45 @@ form button:hover {
 
 .fav-search::placeholder {
     color: #e50914;
+}
+
+.btn-logout {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+    opacity: 0.8;
+    padding: 0;
+}
+
+.btn-logout:hover {
+    color: var(--gold-light);
+    opacity: 1;
+    gap: 10px;
+}
+
+.avatar-choice {
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.avatar-choice:hover {
+    transform: scale(1.2);
+}
+
+.avatar-choice.selected {
+    border-color: var(--gold);
 }

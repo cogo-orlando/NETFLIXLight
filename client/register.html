@@ -7,6 +7,17 @@
 </head>
 <body>
 <h2>Inscription</h2>
+
+<p style="font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin: 10px 0 6px;">Choisir un avatar</p>
+<div id="avatar-choices" style="display:flex; gap:10px; justify-content:center; margin-bottom:10px;">
+  <span class="avatar-choice" data-avatar="🎬">🎬</span>
+  <span class="avatar-choice" data-avatar="🎭">🎭</span>
+  <span class="avatar-choice" data-avatar="🍿">🍿</span>
+  <span class="avatar-choice" data-avatar="🎥">🎥</span>
+  <span class="avatar-choice" data-avatar="⭐">⭐</span>
+</div>
+
+<input type="hidden" id="avatar-input" name="avatar" value="🎬">
 <form id="register-form">
   <input type="text" name="pseudo" placeholder="Pseudo" required><br>
   <input type="email" name="email" placeholder="Email" required><br>

@@ -1,13 +1,23 @@
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
 
+// Sélection avatar
+document.querySelectorAll('.avatar-choice').forEach(el => {
+    el.addEventListener('click', () => {
+        document.querySelectorAll('.avatar-choice').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+        document.getElementById('avatar-input').value = el.dataset.avatar;
+    });
+});
+
 if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = {
             pseudo: registerForm.pseudo.value,
             email: registerForm.email.value,
-            password: registerForm.password.value
+            password: registerForm.password.value,
+            avatar: document.getElementById('avatar-input').value
         };
 
         try {
@@ -59,3 +69,28 @@ if (loginForm) {
         }
     });
 }
+
+// Vérifie si l'utilisateur est connecté au chargement
+fetch('/auth/me')
+    .then(res => res.json())
+    .then(data => {
+        if (data.user) {
+            document.getElementById('logout-btn').classList.remove('hidden');
+
+            // Affiche l'avatar avec le pseudo
+            const avatar = document.getElementById('user-avatar');
+            if (avatar) {
+                avatar.classList.remove('hidden');
+                document.getElementById('avatar-letter').textContent = data.user.avatar || "🎬";
+                document.getElementById('avatar-pseudo').textContent = data.user.pseudo;
+            }
+        }
+    });
+
+// Bouton déconnexion
+document.getElementById('logout-btn').addEventListener('click', () => {
+    fetch('/auth/logout', { method: 'POST' })
+        .then(() => {
+            window.location.href = 'login.html';
+        });
+});
