@@ -3,6 +3,7 @@ const path = require('path');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const openBrowser = (...args) => import('open').then(({ default: open }) => open(...args));
+const favoritesRoutes = require("./routes/favorites");
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,7 @@ app.use(session({
 // Routes
 app.use('/api', require('./routes/movies.js'));
 app.use('/auth', require('./routes/auth.js'));
+app.use("/api/favorites", favoritesRoutes);
 
 // Lancement du serveur
 app.listen(PORT, () => {
