@@ -20,9 +20,17 @@ app.use(session({
 }));
 
 // Routes
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+});
 app.use('/api', require('./routes/movies.js'));
 app.use('/auth', require('./routes/auth.js'));
 app.use("/api/favorites", favoritesRoutes);
+
+// 404
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, '../client/error.html'));
+});
 
 // Lancement du serveur
 app.listen(PORT, () => {
