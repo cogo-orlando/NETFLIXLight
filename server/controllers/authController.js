@@ -27,14 +27,29 @@ async function loginUser(req, res) {
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) return res.status(400).json({ error: "Mot de passe incorrect" });
 
-    req.session.user = { email, pseudo: user.pseudo };
-    res.json({ message: "Connexion réussie", user: { email, pseudo: user.pseudo } });
+    req.session.user = { email, pseudo: user.pseudo, avatar: user.avatar || "🎬" };
+    res.json({ message: "Connexion réussie", user: { email, pseudo: user.pseudo, avatar: user.avatar || "🎬" } });
 }
 
 // ← AJOUT
 function logoutUser(req, res) {
     req.session.destroy();
     res.json({ success: true });
+}
+
+async function registerUser(req, res) {
+    const { email, pseudo, password, avatar } = req.body;
+    if (!email || !pseudo || !password) return res.status(400).json({ error: "Champs manquants" });
+
+    const users = readJSON(usersFile);
+    if (users.find(u => u.email === email)) return res.status(400).json({ error: "Utilisateur existant" });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({ email, pseudo, password: hashedPassword, avatar: avatar || "🎬" });
+    writeJSON(usersFile, users);
+
+    req.session.user = { email, pseudo, avatar: avatar || "🎬" };
+    res.json({ message: "Inscription réussie", user: { email, pseudo, avatar: avatar || "🎬" } });
 }
 
 module.exports = { registerUser, loginUser, logoutUser };
