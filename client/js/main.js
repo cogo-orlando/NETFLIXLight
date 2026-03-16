@@ -106,3 +106,11 @@ async function loadMovies(){
 }
 
 loadMovies();
+
+document.getElementById("fav-search").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    document.querySelectorAll(".fav-card").forEach(card => {
+        const titre = card.querySelector(".fav-movie-title").textContent.toLowerCase();
+        card.style.display = titre.includes(query) ? "block" : "none";
+    });
+});

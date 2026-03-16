@@ -16,7 +16,7 @@
 }
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
     font-weight: 300;
     color: var(--text);
     text-align: center;
@@ -51,7 +51,7 @@ body::after {
 
 /* Titre principal */
 h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Century Gothic', serif;
     font-size: 3.8rem;
     font-weight: 700;
     color: var(--gold-light);
@@ -72,7 +72,7 @@ h1::after {
 }
 
 h2 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
     font-size: 0.75rem;
     font-weight: 300;
     letter-spacing: 6px;
@@ -85,7 +85,7 @@ h2 {
 
 /* Lien navigation haut gauche */
 a {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
     font-size: 0.7rem;
     font-weight: 400;
     letter-spacing: 3px;
@@ -156,7 +156,7 @@ a:hover {
 }
 
 .film-card .film-overlay span {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Century Gothic', serif;
     font-size: 0.9rem;
     color: var(--gold-light);
     text-align: left;
@@ -183,7 +183,7 @@ form input {
     border: 1px solid rgba(201, 168, 76, 0.2);
     border-radius: 2px;
     color: var(--text);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     outline: none;
@@ -204,7 +204,7 @@ form button {
     width: 100%;
     margin-top: 18px;
     padding: 13px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Century Gothic', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 3px;
@@ -247,6 +247,30 @@ form button:hover {
     color:gold;
 }
 
-.favorite-btn:hover{
+.favorite-btn:hover {
     transform:scale(1.2);
+}
+
+.fav-search {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    background: #181818;
+    border: 1px solid #ff0303;
+    border-radius: 8px;
+    padding: 0.65rem 1.1rem;
+    color: #f0f0f0;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    margin: 0 auto 2rem auto;
+    transition: border-color 0.2s;
+}
+
+.fav-search:focus {
+    border-color: #e50914;
+}
+
+.fav-search::placeholder {
+    color: #e50914;
 }

@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>NetflixLight — Favoris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/favorites.css">
 </head>
 <body>
-  <h1>Mes films favoris </h1>
-  <div id="favorites-container"></div>
-  <script src="js/favorites.js"></script>
+
+<a href="index.html" class="fav-back">&#8592; Back</a>
+<h1 class="fav-title">My favorite<span> films</span></h1>
+<div id="favorites-container" class="fav-grid"></div>
+<div id="fav-empty" class="fav-empty hidden">
+  <p>No movies in your favorites.</p>
+  <a href="index.html">Browse the films</a>
+
+</div>
+<script src="js/favorites.js"></script>
 </body>
 </html>

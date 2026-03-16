@@ -1,23 +1,50 @@
 const container = document.getElementById("favorites-container");
+const empty = document.getElementById("fav-empty");
 
-async function loadFavorites(){
+function loadFavorites() {
+    container.innerHTML = "";
 
-    const res = await fetch("/api/favorites");
-    const data = await res.json();
+    fetch("/api/favorites")
+        .then(res => res.json())
+        .then(films => {
+            if (films.length === 0) {
+                empty.classList.remove("hidden");
+                return;
+            }
 
-    data.forEach(film => {
+            empty.classList.add("hidden");
 
-        const div = document.createElement("div");
+            films.forEach(film => {
+                const card = document.createElement("div");
+                card.classList.add("fav-card");
+                card.dataset.id = film.id;
+                card.innerHTML = `
+                    <img class="fav-poster" src="${film.poster}" alt="${film.titre}">
+                    <div class="fav-overlay">
+                        <p class="fav-movie-title">${film.titre}</p>
+                        <button class="fav-remove">✕ Retirer</button>
+                    </div>`;
 
-        div.innerHTML = `
-            <img src="${film.poster}" width="150">
-            <h3>${film.titre}</h3>
-        `;
+                card.querySelector(".fav-remove").addEventListener("click", () => {
+                    removeFavorite(film.id);
+                });
 
-        container.appendChild(div);
+                container.appendChild(card);
+            });
+        })
+        .catch(err => console.error("Erreur chargement favoris :", err));
+}
 
-    });
-
+function removeFavorite(id) {
+    fetch(`/api/favorites/${id}`, { method: "DELETE" })
+        .then(res => {
+            if (res.ok) {
+                loadFavorites();
+            } else {
+                console.error("Erreur suppression");
+            }
+        })
+        .catch(err => console.error("Erreur suppression :", err));
 }
 
 loadFavorites();
