@@ -233,3 +233,20 @@ form button:hover {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+.favorite-btn{
+    background:none;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+    color:white;
+    transition:0.2s;
+}
+
+.favorite-btn.active{
+    color:gold;
+}
+
+.favorite-btn:hover{
+    transform:scale(1.2);
+}
