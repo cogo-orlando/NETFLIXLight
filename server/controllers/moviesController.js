@@ -3,15 +3,27 @@ const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
 async function getTrending(req, res) {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}`);
-        const data = await response.json();
-        const films = data.results.map(film => ({
-            id: film.id,
-            titre: film.title,
-            poster: `https://image.tmdb.org/t/p/w500${film.poster_path}`,
-            date_sortie: film.release_date,
-            note: film.vote_average
-        }));
+        // Récupère 3 pages = 60 films
+        const pages = [1, 2, 3,4 ,5];
+
+        const responses = await Promise.all(
+            pages.map(page =>
+                fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}&page=${page}`)
+                    .then(r => r.json())
+            )
+        );
+
+        const films = responses
+            .flatMap(data => data.results)
+            .filter(film => film.poster_path) // ignore les films sans affiche
+            .map(film => ({
+                id: film.id,
+                titre: film.title,
+                poster: `https://image.tmdb.org/t/p/w500${film.poster_path}`,
+                date_sortie: film.release_date,
+                note: film.vote_average
+            }));
+
         res.json({ message: "Films trending", films });
     } catch (err) {
         res.status(500).json({ error: err.message });
