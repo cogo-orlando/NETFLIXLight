@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>NetflixLight — Erreur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/error.css">
 </head>
 <body>
-$END$
+<div class="error-page">
+
+  <div class="error-logo">Netflix<span>Light</span></div>
+
+  <div class="error-screen">
+    <div class="error-scanlines"></div>
+    <p class="error-code" id="error-code">404</p>
+  </div>
+
+  <h1 class="error-title" id="error-title">Page introuvable</h1>
+  <p class="error-message" id="error-message">
+    Ce contenu n'est pas disponible sur NetflixLight.<br>
+    Il a peut-être été supprimé ou n'existe pas.
+  </p>
+
+  <a href="index.html" class="error-btn">⬅ Retour à l'accueil</a>
+
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  const message = params.get("message");
+
+  if (code) document.getElementById("error-code").textContent = code;
+
+  if (code === "500") {
+    document.getElementById("error-title").textContent = "Erreur serveur";
+    document.getElementById("error-message").innerHTML = "Une erreur inattendue s'est produite.<br>Réessayez dans quelques instants.";
+  } else if (code === "403") {
+    document.getElementById("error-title").textContent = "Accès refusé";
+    document.getElementById("error-message").innerHTML = "Vous n'avez pas la permission<br>d'accéder à cette page.";
+  } else if (code === "401") {
+    document.getElementById("error-title").textContent = "Non autorisé";
+    document.getElementById("error-message").innerHTML = "Vous devez être connecté<br>pour accéder à cette page.";
+  }
+
+  if (message) document.getElementById("error-message").textContent = message;
+</script>
 </body>
 </html>
