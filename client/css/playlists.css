@@ -1,0 +1,380 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Century Gothic', sans-serif;
+    color: #f0ece0;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("../image/logo.jpg");
+    background-position: center;
+    background-size: cover;
+    filter: blur(2px) brightness(0.25);
+    transform: scale(1.05);
+    z-index: -2;
+}
+
+/* Hero */
+.pl-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 3rem 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.pl-title {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    animation: none;
+}
+
+.pl-title span { color: var(--red, #e50914); }
+.pl-title::after { display: none; }
+
+.pl-create-btn {
+    background: var(--red, #e50914);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.8rem;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.pl-create-btn:hover { opacity: 0.85; transform: scale(1.03); }
+
+/* Modal */
+.pl-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+}
+
+.pl-modal-box {
+    background: #181818;
+    border: 1px solid rgba(229,9,20,0.2);
+    border-radius: 8px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.pl-modal-title {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    animation: none;
+}
+
+.pl-modal-title::after { display: none; }
+
+.pl-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(229,9,20,0.2);
+    border-radius: 3px;
+    padding: 12px 16px;
+    color: #f0ece0;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pl-input:focus { border-color: var(--red, #e50914); }
+.pl-input::placeholder { color: rgba(255,255,255,0.2); }
+
+.pl-modal-btns { display: flex; gap: 1rem; }
+
+.pl-btn-confirm {
+    flex: 1;
+    background: var(--red, #e50914);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 12px;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.pl-btn-confirm:hover { opacity: 0.85; }
+
+.pl-btn-cancel {
+    flex: 1;
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 12px;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pl-btn-cancel:hover { border-color: #aaa; color: #fff; }
+
+/* Grille playlists */
+.pl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 0 3rem 4rem;
+}
+
+/* Carte playlist */
+.pl-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.pl-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    border-color: var(--red, #e50914);
+}
+
+.pl-card-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 140px;
+    overflow: hidden;
+}
+
+.pl-card-preview img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    display: block;
+}
+
+.pl-card-preview-empty {
+    height: 140px;
+    background: rgba(229,9,20,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.pl-card-info { padding: 1rem; }
+
+.pl-card-name {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f0ece0;
+    margin: 0 0 0.3rem;
+}
+
+.pl-card-count {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: #666;
+}
+
+/* Page détail playlist */
+.pl-detail { padding: 100px 3rem 4rem; }
+
+.pl-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.pl-back-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.pl-back-btn:hover { color: #fff; }
+
+#pl-detail-title {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    flex: 1;
+    animation: none;
+}
+
+#pl-detail-title::after { display: none; }
+
+.pl-delete-pl-btn {
+    background: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    border-radius: 4px;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pl-delete-pl-btn:hover { background: #ff4444; color: #fff; }
+
+/* Grille films dans la playlist */
+.pl-films-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.2rem;
+}
+
+/* Carte film dans playlist */
+.pl-film-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pl-film-card:hover {
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 0 1px var(--red, #e50914);
+}
+
+.pl-film-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pl-film-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.pl-film-card:hover .pl-film-overlay { opacity: 1; }
+
+.pl-film-title {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0 0 0.5rem;
+}
+
+.pl-film-btns {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.pl-film-detail {
+    flex: 1;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 3px;
+    padding: 0.35rem 0;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.pl-film-detail:hover { background: rgba(255,255,255,0.25); }
+
+.pl-film-remove {
+    flex: 1;
+    background: rgba(229,9,20,0.7);
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0.35rem 0;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.pl-film-remove:hover { opacity: 0.8; }
+
+.pl-empty-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem;
+    color: #555;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.pl-empty-detail a {
+    color: #fff;
+    background: var(--red, #e50914);
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 0.6rem 1.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+}
+
+.hidden { display: none !important; }

@@ -1,250 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
-
-:root {
-    --gold: #e50404;
-    --gold-light: rgb(255, 255, 255);
-    --dark: #0a0a0a;
-    --dark-card: rgba(10, 10, 10, 0.75);
-    --text: #f0ece0;
-    --text-muted: #e2dfd8;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    color: var(--text);
-    padding: 40px 20px;
-    text-align: center;
+.film-detail-page {
     min-height: 100vh;
+    position: relative;
 }
 
-/* Fond flouté */
-body::before {
-    content: "";
+/* Backdrop flouté derrière */
+.detail-backdrop {
     position: fixed;
     inset: 0;
-    background-image: url("../image/logo.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(2px) brightness(0.35);
-    transform: scale(1.1);
-    z-index: -2;
-}
-
-/* Grain cinématique */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
+    background-position: center top;
+    filter: blur(8px) brightness(0.2);
+    transform: scale(1.05);
     z-index: -1;
-    opacity: 0.4;
 }
 
-/* Carte principale */
-#film-detail {
-    max-width: 620px;
+/* Layout principal */
+.detail-content {
+    display: flex;
+    gap: 3rem;
+    padding: 100px 4rem 4rem;
+    max-width: 1200px;
     margin: 0 auto;
-    text-align: center;
-    background: var(--dark-card);
-    border: 1px solid rgb(229, 4, 4);
-    border-radius: 4px;
-    padding: 40px 36px 48px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow:
-            0 0 0 1px rgba(206, 182, 119, 0.08),
-            0 30px 80px rgba(0, 0, 0, 0.7),
-            inset 0 1px 0 rgba(201, 168, 76, 0.15);
-    animation: fadeUp 0.8s ease both;
+    align-items: flex-start;
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* Colonne gauche — affiche */
+.detail-left {
+    flex-shrink: 0;
 }
 
-/* Ligne décorative dorée */
-#film-detail::before {
-    content: "✦  ✦  ✦";
-    display: block;
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 8px;
-    margin-bottom: 28px;
-    opacity: 0.7;
+.detail-poster {
+    width: 260px;
+    border-radius: 6px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-/* Affiche du film */
-#film-detail img {
-    width: auto;
-    height: 320px;
-    max-width: 100%;
-    object-fit: cover;
-    border-radius: 2px;
-    margin-bottom: 28px;
-    box-shadow:
-            0 8px 32px rgba(0, 0, 0, 0.6),
-            0 0 0 1px rgba(201, 168, 76, 0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+/* Colonne droite — infos */
+.detail-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1rem;
 }
 
-#film-detail img:hover {
-    transform: scale(1.02);
-    box-shadow:
-            0 16px 48px rgba(0, 0, 0, 0.8),
-            0 0 0 1px rgba(201, 168, 76, 0.4);
-}
-
-/* Titre */
-#film-detail h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.8rem;
+.detail-title {
+    font-family: 'Century Gothic', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 700;
-    color: var(--gold-light);
     letter-spacing: 3px;
-    margin-bottom: 8px;
-    text-shadow: 0 4px 30px rgb(239, 0, 0);
-    animation: fadeDown 0.8s ease both;
+    color: var(--text);
+    line-height: 1.1;
+    animation: none;
 }
 
-/* Sous-titre / année */
-#film-detail h3 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
+.detail-title::after { display: none; }
+
+.detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
     font-size: 0.8rem;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    opacity: 0.85;
 }
 
-/* Séparateur */
-#film-detail hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    margin: 20px auto;
-    width: 60%;
-    opacity: 0.4;
+.detail-note {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 1rem;
 }
 
-/* Texte descriptif */
-#film-detail p {
+.detail-synopsis {
     font-size: 0.95rem;
     line-height: 1.8;
     color: var(--text-muted);
-    margin: 8px 0;
+    max-width: 600px;
 }
 
-/* Mettre en valeur certaines infos (ex: genre, durée) */
-#film-detail p strong {
-    color: var(--gold);
-    font-weight: 400;
-    letter-spacing: 0.5px;
-}
-
-/* Boutons */
-button, .btn {
-    position: relative;
-    display: inline-block;
-    margin: 20px 6px 0;
-    padding: 12px 30px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 3px;
+.detail-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--dark);
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+}
+
+.detail-cast p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* Bande annonce */
+.detail-trailer {
+    margin-top: 0.5rem;
+}
+
+.trailer-frame {
+    width: 480px;
+    aspect-ratio: 16/9;
+    border-radius: 6px;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
-button:hover, .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(201, 168, 76, 0.5);
+.trailer-frame iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
-button.outline, .btn-outline {
-    background: transparent;
-    color: var(--gold);
-    border: 1px solid rgba(201, 168, 76, 0.5);
-    box-shadow: none;
-}
-
-button.outline:hover, .btn-outline:hover {
-    background: rgba(201, 168, 76, 0.08);
-    border-color: var(--gold);
-}
-
-/* Lien retour */
+/* Bouton retour dans topbar */
 .btn-retour {
-    position: fixed;
-    top: 24px;
-    left: 24px;
-    font-size: 0.7rem;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 0.68rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--text-muted);
     text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-}
-
-.btn-retour::before {
-    content: "← ";
+    transition: color 0.2s;
+    opacity: 0.8;
 }
 
 .btn-retour:hover {
+    color: var(--red);
     opacity: 1;
 }
 
-/* Bouton bande annonce */
-.btn-trailer {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 24px;
-    padding: 13px 32px;
-    font-family: 'Lato', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #fff;
-    background: var(--gold);
-    border-radius: 2px;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(229, 4, 4, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-content {
+        flex-direction: column;
+        padding: 90px 1.5rem 3rem;
+    }
 
-.btn-trailer:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(229, 4, 4, 0.6);
-}
-
-/* Supprime la flèche globale sur ces liens */
-.btn-retour::before,
-.btn-trailer::before {
-    letter-spacing: 0;
-}
-
-/* Liens nav sans flèche */
-.btn-nav::before {
-    content: none;
+    .detail-poster { width: 100%; max-width: 300px; }
+    .trailer-frame { width: 100%; }
 }
