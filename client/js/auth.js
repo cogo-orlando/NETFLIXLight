@@ -91,6 +91,13 @@ fetch('/auth/me')
 document.getElementById('logout-btn').addEventListener('click', () => {
     fetch('/auth/logout', { method: 'POST' })
         .then(() => {
-            window.location.href = 'login.html';
+            window.location.href = '/';
         });
 });
+
+const savedColor = localStorage.getItem('accentColor');
+if (savedColor) {
+    document.documentElement.style.setProperty('--red', savedColor);
+    document.documentElement.style.setProperty('--red-light', savedColor);
+}
+

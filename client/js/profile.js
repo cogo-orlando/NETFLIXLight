@@ -1,0 +1,116 @@
+async function loadProfile() {
+    const res = await fetch('/auth/me');
+    const data = await res.json();
+
+    if (!data.user) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const user = data.user;
+
+    document.getElementById('profile-avatar').textContent = user.avatar || '🎬';
+    document.getElementById('profile-pseudo').textContent = user.pseudo;
+    document.getElementById('profile-email').textContent = user.email;
+    document.getElementById('profile-date').textContent = user.dateInscription
+        ? new Date(user.dateInscription).toLocaleDateString('fr-FR')
+        : 'Inconnue';
+
+    // Nombre de favoris
+    const favRes = await fetch('/api/favorites');
+    const favs = await favRes.json();
+    document.getElementById('stat-favoris').textContent = favs.length;
+
+    // Avatar sélectionné
+    document.querySelectorAll('.avatar-choice').forEach(el => {
+        if (el.dataset.avatar === user.avatar) el.classList.add('selected');
+        el.addEventListener('click', () => {
+            document.querySelectorAll('.avatar-choice').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+        });
+    });
+}
+
+// Sauvegarder les modifications
+document.getElementById('save-profile-btn').addEventListener('click', async () => {
+    const pseudo = document.getElementById('input-pseudo').value.trim();
+    const avatar = document.querySelector('.avatar-choice.selected')?.dataset.avatar;
+
+    const body = {};
+    if (pseudo) body.pseudo = pseudo;
+    if (avatar) body.avatar = avatar;
+
+    const res = await fetch('/auth/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    });
+
+    const result = await res.json();
+    document.getElementById('profile-message').textContent = result.message || result.error;
+
+    if (result.user) {
+        document.getElementById('profile-pseudo').textContent = result.user.pseudo;
+        document.getElementById('profile-avatar').textContent = result.user.avatar;
+    }
+});
+
+// Changer mot de passe
+document.getElementById('save-password-btn').addEventListener('click', async () => {
+    const oldPassword = document.getElementById('input-old-password').value;
+    const newPassword = document.getElementById('input-new-password').value;
+
+    const res = await fetch('/auth/password', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ oldPassword, newPassword })
+    });
+
+    const result = await res.json();
+    document.getElementById('password-message').textContent = result.message || result.error;
+});
+
+// Couleur du site
+
+const savedColor = localStorage.getItem('accentColor');
+if (savedColor) applyColor(savedColor);
+
+document.querySelectorAll('.color-choice').forEach(el => {
+    if (el.dataset.color === savedColor) el.classList.add('selected');
+    el.addEventListener('click', () => {
+        document.querySelectorAll('.color-choice').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+    });
+});
+
+document.getElementById('save-color-btn').addEventListener('click', () => {
+    const selected = document.querySelector('.color-choice.selected');
+    if (!selected) return;
+    const color = selected.dataset.color;
+
+    localStorage.setItem('accentColor', color);
+    applyColor(color);
+    document.getElementById('color-message').textContent = 'Couleur appliquée ✓';
+});
+
+function applyColor(color) {
+    document.documentElement.style.setProperty('--red', color);
+    document.documentElement.style.setProperty('--red-light', color);
+}
+
+// Supprimer le compte
+document.getElementById('delete-account-btn').addEventListener('click', async () => {
+    const confirm = window.confirm('Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.');
+    if (!confirm) return;
+
+    const res = await fetch('/auth/delete', { method: 'DELETE' });
+    const result = await res.json();
+
+    if (result.success) {
+        window.location.href = 'register.html';
+    } else {
+        document.getElementById('delete-message').textContent = result.error;
+    }
+});
+
+loadProfile();
