@@ -3,19 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>NetflixLight — Favoris</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/favorites.css">
 </head>
 <body>
 
-<a href="index.html" class="fav-back">&#8592; Back</a>
-<h1 class="fav-title">My favorite<span> films</span></h1>
-<div id="favorites-container" class="fav-grid"></div>
-<div id="fav-empty" class="fav-empty hidden">
-  <p>No movies in your favorites.</p>
-  <a href="index.html">Browse the films</a>
-
+<div class="topbar">
+  <div class="topbar-logo">Netflix<span>Light</span></div>
+  <a href="index.html" class="btn-retour">← Retour</a>
 </div>
+
+<div class="fav-hero">
+  <h1 class="fav-title">Mes <span>Favoris</span></h1>
+  <p class="fav-count" id="fav-count">0 film</p>
+  <input type="text" id="fav-search" class="fav-search" placeholder="Rechercher un favori...">
+</div>
+
+<div id="favorites-container" class="fav-grid"></div>
+
+<div id="fav-empty" class="fav-empty hidden">
+  <div class="fav-empty-icon">♡</div>
+  <p>Aucun film dans vos favoris.</p>
+  <a href="index.html">Parcourir les films</a>
+</div>
+
 <script src="js/favorites.js"></script>
 </body>
 </html>
