@@ -6,26 +6,31 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h2>Inscription</h2>
 
-<p style="font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin: 10px 0 6px;">Choisir un avatar</p>
-<div id="avatar-choices" style="display:flex; gap:10px; justify-content:center; margin-bottom:10px;">
-  <span class="avatar-choice" data-avatar="🎬">🎬</span>
-  <span class="avatar-choice" data-avatar="🎭">🎭</span>
-  <span class="avatar-choice" data-avatar="🍿">🍿</span>
-  <span class="avatar-choice" data-avatar="🎥">🎥</span>
-  <span class="avatar-choice" data-avatar="⭐">⭐</span>
+<div class="auth-page">
+  <div class="auth-logo">Netflix<span>Light</span></div>
+  <h2>Inscription</h2>
+
+  <p style="font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; margin: 0 0 8px; color: var(--text-muted);">Choisir un avatar</p>
+  <div id="avatar-choices" style="display:flex; gap:10px; justify-content:center; margin-bottom:16px;">
+    <span class="avatar-choice" data-avatar="🎬">🎬</span>
+    <span class="avatar-choice" data-avatar="🎭">🎭</span>
+    <span class="avatar-choice" data-avatar="🍿">🍿</span>
+    <span class="avatar-choice" data-avatar="🎥">🎥</span>
+    <span class="avatar-choice" data-avatar="⭐">⭐</span>
+  </div>
+  <input type="hidden" id="avatar-input" name="avatar" value="🎬">
+
+  <form id="register-form">
+    <input type="text" name="pseudo" placeholder="Pseudo" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Mot de passe" required>
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <p id="register-message"></p>
+  <p class="auth-link">Déjà inscrit ? <a href="login.html">Connexion</a></p>
 </div>
-
-<input type="hidden" id="avatar-input" name="avatar" value="🎬">
-<form id="register-form">
-  <input type="text" name="pseudo" placeholder="Pseudo" required><br>
-  <input type="email" name="email" placeholder="Email" required><br>
-  <input type="password" name="password" placeholder="Mot de passe" required><br>
-  <button type="submit">S'inscrire</button>
-</form>
-<p id="register-message"></p>
-<p>Déjà inscrit ? <a href="login.html">Connexion</a></p>
 
 <script src="js/auth.js"></script>
 </body>

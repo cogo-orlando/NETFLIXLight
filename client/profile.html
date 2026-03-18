@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Mon Profil</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
-$END$
+
+<div class="topbar">
+  <div class="topbar-logo">Netflix<span>Light</span></div>
+  <div id="auth-buttons">
+    <a href="index.html">← Retour</a>
+  </div>
+</div>
+
+<div class="profile-page">
+
+  <div class="profile-header">
+    <div class="profile-avatar" id="profile-avatar">🎬</div>
+    <div class="profile-info">
+      <h1 id="profile-pseudo">Pseudo</h1>
+      <p id="profile-email">email@example.com</p>
+      <p class="profile-since">Membre depuis le <span id="profile-date">—</span></p>
+    </div>
+  </div>
+
+  <div class="profile-stats">
+    <div class="stat-card">
+      <span class="stat-num" id="stat-favoris">0</span>
+      <span class="stat-label">Favoris</span>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <h2 class="profile-section-title">Modifier le profil</h2>
+
+    <div class="profile-form">
+      <label>Nouveau pseudo</label>
+      <input type="text" id="input-pseudo" placeholder="Nouveau pseudo">
+
+      <label>Choisir un avatar</label>
+      <div id="avatar-choices-profile" class="avatar-choices-row">
+        <span class="avatar-choice" data-avatar="🎬">🎬</span>
+        <span class="avatar-choice" data-avatar="🎭">🎭</span>
+        <span class="avatar-choice" data-avatar="🍿">🍿</span>
+        <span class="avatar-choice" data-avatar="🎥">🎥</span>
+        <span class="avatar-choice" data-avatar="⭐">⭐</span>
+        <span class="avatar-choice" data-avatar="🏆">🏆</span>
+        <span class="avatar-choice" data-avatar="🎞️">🎞️</span>
+        <span class="avatar-choice" data-avatar="👁️">👁️</span>
+      </div>
+
+      <button id="save-profile-btn" class="save-btn">Sauvegarder</button>
+      <p id="profile-message" class="profile-message"></p>
+    </div>
+  </div>
+  <!-- Changer mot de passe -->
+  <div class="profile-section">
+    <h2 class="profile-section-title">Changer le mot de passe</h2>
+    <div class="profile-form">
+      <label>Ancien mot de passe</label>
+      <input type="password" id="input-old-password" placeholder="Ancien mot de passe">
+      <label>Nouveau mot de passe</label>
+      <input type="password" id="input-new-password" placeholder="Nouveau mot de passe">
+      <button id="save-password-btn" class="save-btn">Changer le mot de passe</button>
+      <p id="password-message" class="profile-message"></p>
+    </div>
+  </div>
+
+  <!-- Couleur du site -->
+  <div class="profile-section">
+    <h2 class="profile-section-title">Couleur du site</h2>
+    <div class="profile-form">
+      <label>Choisir une couleur d'accentuation</label>
+      <div class="color-choices">
+        <div class="color-choice" data-color="#e50914" style="background:#e50914;" title="Rouge Netflix"></div>
+        <div class="color-choice" data-color="#0084ff" style="background:#0084ff;" title="Bleu"></div>
+        <div class="color-choice" data-color="#00c853" style="background:#00c853;" title="Vert"></div>
+        <div class="color-choice" data-color="#ff6d00" style="background:#ff6d00;" title="Orange"></div>
+        <div class="color-choice" data-color="#aa00ff" style="background:#aa00ff;" title="Violet"></div>
+        <div class="color-choice" data-color="#ffd600" style="background:#ffd600;" title="Or"></div>
+      </div>
+      <button id="save-color-btn" class="save-btn">Appliquer</button>
+      <p id="color-message" class="profile-message"></p>
+    </div>
+  </div>
+
+  <!-- Supprimer le compte -->
+  <div class="profile-section">
+    <h2 class="profile-section-title" style="color:#ff4444;">Supprimer le compte</h2>
+    <div class="profile-form">
+      <p style="font-size:0.8rem; letter-spacing:1px; color:var(--text-muted); margin-bottom:0.5rem;">
+        Cette action est irréversible. Toutes vos données seront supprimées.
+      </p>
+      <button id="delete-account-btn" class="delete-btn">Supprimer mon compte</button>
+      <p id="delete-message" class="profile-message"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/profile.js"></script>
 </body>
 </html>
