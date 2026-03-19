@@ -1,22 +1,27 @@
-const savedColorFav = localStorage.getItem('accentColor');
-if (savedColorFav) {
-    document.documentElement.style.setProperty('--red', savedColorFav);
-    document.documentElement.style.setProperty('--red-light', savedColorFav);
+// ─── COULEUR PERSONNALISÉE ───────────────────────────────
+const savedColor = localStorage.getItem('accentColor');
+if (savedColor) {
+    document.documentElement.style.setProperty('--red', savedColor);
+    document.documentElement.style.setProperty('--red-light', savedColor);
 }
 
 const container = document.getElementById("favorites-container");
 const empty = document.getElementById("fav-empty");
 
+// ─── CHARGER LES FAVORIS ─────────────────────────────────
 function loadFavorites() {
     container.innerHTML = "";
 
     fetch("/api/favorites")
         .then(res => res.json())
         .then(films => {
+
+            // Met à jour le compteur de films
             document.getElementById('fav-count').textContent =
                 films.length === 0 ? "Aucun film" :
                     films.length === 1 ? "1 film" : `${films.length} films`;
 
+            // Si aucun favori → affiche le message vide
             if (films.length === 0) {
                 empty.classList.remove("hidden");
                 return;
@@ -24,21 +29,25 @@ function loadFavorites() {
 
             empty.classList.add("hidden");
 
+            // Crée une carte pour chaque film favori
             films.forEach((film, index) => {
                 const card = document.createElement("div");
                 card.classList.add("fav-card");
                 card.dataset.id = film.id;
+
                 card.innerHTML = `
                     <img class="fav-poster" src="${film.poster}" alt="${film.titre}">
                     <div class="fav-number">${index + 1}</div>
                     <div class="fav-overlay">
                         <p class="fav-movie-title">${film.titre}</p>
                         <div class="fav-overlay-btns">
-                            <a class="fav-detail-btn" href="details.html?id=${film.id}">Détails</a>
+                            <a href="details.html?id=${film.id}">Détails</a>
                             <button class="fav-remove">✕ Retirer</button>
                         </div>
-                    </div>`;
+                    </div>
+                `;
 
+                // Bouton supprimer un favori
                 card.querySelector(".fav-remove").addEventListener("click", () => {
                     removeFavorite(film.id);
                 });
@@ -46,25 +55,27 @@ function loadFavorites() {
                 container.appendChild(card);
             });
 
-            // Recherche
+            // ─── RECHERCHE DANS LES FAVORIS ──────────────
             document.getElementById("fav-search").addEventListener("input", function () {
-                const query = this.value.toLowerCase();
+                const recherche = this.value.toLowerCase();
                 document.querySelectorAll(".fav-card").forEach(card => {
                     const titre = card.querySelector(".fav-movie-title").textContent.toLowerCase();
-                    card.style.display = titre.includes(query) ? "block" : "none";
+                    // Affiche ou cache la carte selon la recherche
+                    card.style.display = titre.includes(recherche) ? "block" : "none";
                 });
             });
         })
         .catch(err => console.error("Erreur chargement favoris :", err));
 }
 
+// ─── SUPPRIMER UN FAVORI ─────────────────────────────────
 function removeFavorite(id) {
     fetch(`/api/favorites/${id}`, { method: "DELETE" })
         .then(res => {
-            if (res.ok) loadFavorites();
-            else console.error("Erreur suppression");
+            if (res.ok) loadFavorites(); // Recharge la liste après suppression
         })
         .catch(err => console.error("Erreur suppression :", err));
 }
 
+// Charge les favoris au démarrage
 loadFavorites();
