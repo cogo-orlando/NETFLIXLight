@@ -2,40 +2,48 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const dotenv = require('dotenv');
-const openBrowser = (...args) => import('open').then(({ default: open }) => open(...args));
-const favoritesRoutes = require("./routes/favorites");
 
+// Charge les variables d'environnement (.env)
 dotenv.config();
+
 const app = express();
 const PORT = 3000;
 
-// Middleware
+// ─── CONFIGURATION ───────────────────────────────────────
+// Permet de lire le JSON envoyé par le navigateur
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../client')));
+
+// Sert les fichiers du site (HTML, CSS, JS)
+app.use(express.static(path.join(__dirname, '../web')));
+
+// Gère les sessions (pour retenir qui est connecté)
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secretkey',
     resave: false,
     saveUninitialized: false
 }));
 
-// Routes
+// ─── ROUTES ──────────────────────────────────────────────
+// Page des films
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/index.html'));
+    res.sendFile(path.join(__dirname, '../web/index.html'));
 });
+
+// Routes films
 app.use('/api', require('./routes/movies.js'));
-app.use('/auth', require('./routes/auth.js'));
-app.use("/api/favorites", favoritesRoutes);
 
-// 404
+// Routes connexion/inscription
+app.use('/auth', require('./routes/authentification.js'));
+
+// Routes favoris
+app.use('/api/favorites', require('./routes/favorites.js'));
+
+// ─── PAGE D'ERREUR 404 ───────────────────────────────────
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '../client/error.html'));
+    res.status(404).sendFile(path.join(__dirname, '../web/error.html'));
 });
 
-// Lancement du serveur
+// ─── DÉMARRAGE ───────────────────────────────────────────
 app.listen(PORT, () => {
-    console.log(`🎬 Netflix Light fonctionne sur le port ${PORT}`);
-
-    // ouvrir le navigateur avec import dynamique
-    openBrowser(`http://localhost:${PORT}/`).catch(err => console.error("Impossible d'ouvrir le navigateur :", err));
+    console.log(`🎬 Netflix Light tourne sur http://localhost:${PORT}`);
 });

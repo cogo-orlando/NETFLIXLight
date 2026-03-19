@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ─── PAGE DE CONNEXION ───────────────────────────── -->
+<div class="auth-page">
+
+  <!-- Logo -->
+  <div class="auth-logo">Netflix<span>Light</span></div>
+
+  <!-- Formulaire de connexion -->
+  <h2>Connexion</h2>
+  <form id="login-form">
+    <input type="email"    name="email"    placeholder="Email"         required>
+    <input type="password" name="password" placeholder="Mot de passe"  required>
+    <button type="submit">Se connecter</button>
+  </form>
+
+  <!-- Message de succès ou d'erreur -->
+  <p id="login-message"></p>
+
+  <!-- Lien vers l'inscription -->
+  <p>Pas encore inscrit ? <a href="signup.html">Inscription</a></p>
+
+</div>
+
+<!-- ─── SCRIPT ──────────────────────────────────────── -->
+<script src="js/authentification.js"></script>
+
+</body>
+</html>

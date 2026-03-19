@@ -107,7 +107,7 @@ document.getElementById('delete-account-btn').addEventListener('click', async ()
     const result = await res.json();
 
     if (result.success) {
-        window.location.href = 'register.html';
+        window.location.href = 'signup.html';
     } else {
         document.getElementById('delete-message').textContent = result.error;
     }

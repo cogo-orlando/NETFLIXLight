@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { getTrending, getMovieDetails, getByGenre, getTopRated, getMovieTrailer } = require('../controllers/moviesController.js');
+const { getTrending, getMovieDetails, getByGenre, getTopRated, getMovieTrailer } = require('../logic/movies.js');
 
-router.get('/movie/:id/trailer', getMovieTrailer);
-router.get('/genres', getByGenre);
-router.get('/toprated', getTopRated);
-router.get('/trending', getTrending);
-router.get('/movie/:id', getMovieDetails);
+// ─── ROUTES FILMS ─────────────────────────────────────────
+
+router.get('/trending',          getTrending);       // Films tendance
+router.get('/toprated',          getTopRated);       // Films les mieux notés
+router.get('/genres',            getByGenre);        // Films par genre
+router.get('/movie/:id',         getMovieDetails);   // Détails d'un film
+router.get('/movie/:id/trailer', getMovieTrailer);   // Bande annonce d'un film
 
 module.exports = router;

@@ -7,51 +7,77 @@
 </head>
 <body>
 
+<!-- ─── BARRE DE NAVIGATION ─────────────────────────── -->
 <div class="topbar">
+
+    <!-- Logo -->
     <div class="topbar-logo">Netflix<span>Light</span></div>
+
+    <!-- Boutons de navigation -->
     <div id="auth-buttons">
+
+        <!-- Affiché quand l'utilisateur est connecté -->
         <div id="user-avatar" class="user-avatar hidden">
             <div class="avatar-circle" id="avatar-letter">?</div>
-            <span id="avatar-pseudo" style="cursor:pointer;" onclick="window.location.href='profile.html'"></span>
+            <span id="avatar-pseudo" onclick="window.location.href='profile.html'"></span>
         </div>
-        <span style="color:rgba(255,255,255,0.15); margin:0 6px;">|</span>
+
         <button id="logout-btn" class="btn-logout hidden">Déconnexion</button>
-        <span style="color:rgba(255,255,255,0.15); margin:0 6px;">|</span>
+
+        <!-- Affiché quand l'utilisateur n'est pas connecté -->
         <a href="login.html">Login</a>
-        <span style="color:rgba(255,255,255,0.15); margin:0 6px;">|</span>
-        <a href="register.html">Sign up</a>
-        <span style="color:rgba(255,255,255,0.15); margin:0 6px;">|</span>
+        <a href="signup.html">Sign up</a>
+
+        <!-- Toujours visible -->
         <a href="favorites.html">Favorites</a>
-        <span style="color:rgba(255,255,255,0.15); margin:0 6px;">|</span>
-        <a href="playlists.html">Playlists</a>
+
     </div>
 </div>
 
+<!-- ─── BANNIÈRE PRINCIPALE ──────────────────────────── -->
 <div id="hero-banner" class="hero-banner">
+
+    <!-- Image de fond du film -->
     <div class="hero-backdrop" id="hero-backdrop"></div>
+
+    <!-- Flèches pour naviguer entre les films -->
     <button class="hero-arrow hero-arrow-left" id="hero-prev">&#8592;</button>
     <button class="hero-arrow hero-arrow-right" id="hero-next">&#8594;</button>
+
+    <!-- Infos du film -->
     <div class="hero-content">
         <p class="hero-tag">TENDANCE</p>
         <h1 class="hero-film-title" id="hero-film-title"></h1>
         <p class="hero-synopsis" id="hero-synopsis"></p>
         <div class="hero-meta" id="hero-meta"></div>
+
+        <!-- Boutons d'action -->
         <div class="hero-btns">
             <a class="hero-btn-play" id="hero-btn-play" href="#">▶ Voir le film</a>
             <button class="hero-btn-fav" id="hero-btn-fav">+ Ma liste</button>
         </div>
     </div>
+
+    <!-- Bande annonce -->
     <div class="hero-trailer" id="hero-trailer"></div>
+
+    <!-- Points de navigation -->
     <div class="hero-dots" id="hero-dots"></div>
+
 </div>
 
+<!-- ─── BARRE DE RECHERCHE ───────────────────────────── -->
 <div class="search-bar-section">
-    <input type="text" id="fav-search" class="fav-search" placeholder="Search for a movie...">
+    <input type="text" id="fav-search" placeholder="Search for a movie...">
 </div>
 
+<!-- ─── LISTE DES FILMS ──────────────────────────────── -->
+<!-- Rempli automatiquement par main.js -->
 <div id="films-container"></div>
 
+<!-- ─── SCRIPTS ─────────────────────────────────────── -->
 <script src="js/main.js"></script>
-<script src="js/auth.js"></script>
+<script src="js/authentification.js"></script>
+
 </body>
 </html>

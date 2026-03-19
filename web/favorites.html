@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>NetflixLight — Favoris</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/favorites.css">
+</head>
+<body>
+
+<!-- ─── BARRE DE NAVIGATION ─────────────────────────── -->
+<div class="topbar">
+  <div class="topbar-logo">Netflix<span>Light</span></div>
+  <a href="index.html" class="btn-retour">← Retour</a>
+</div>
+
+<!-- ─── EN-TÊTE ─────────────────────────────────────── -->
+<div class="fav-hero">
+  <h1 class="fav-title">Mes <span>Favoris</span></h1>
+  <p id="fav-count">0 film</p>
+  <!-- Barre de recherche dans les favoris -->
+  <input type="text" id="fav-search" placeholder="Rechercher un favori...">
+</div>
+
+<!-- ─── LISTE DES FAVORIS ────────────────────────────── -->
+<!-- Rempli automatiquement par favorites.js -->
+<div id="favorites-container" class="fav-grid"></div>
+
+<!-- ─── MESSAGE SI AUCUN FAVORI ─────────────────────── -->
+<!-- Affiché si la liste est vide -->
+<div id="fav-empty" class="fav-empty hidden">
+  <div class="fav-empty-icon">♡</div>
+  <p>Aucun film dans vos favoris.</p>
+  <a href="index.html">Parcourir les films</a>
+</div>
+
+<!-- ─── SCRIPT ──────────────────────────────────────── -->
+<script src="js/favorites.js"></script>
+
+</body>
+</html>

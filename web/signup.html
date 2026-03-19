@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ─── PAGE D'INSCRIPTION ──────────────────────────── -->
+<div class="auth-page">
+
+  <!-- Logo -->
+  <div class="auth-logo">Netflix<span>Light</span></div>
+  <h2>Inscription</h2>
+
+  <!-- Choix de l'avatar -->
+  <p>Choisir un avatar</p>
+  <div id="avatar-choices">
+    <span class="avatar-choice" data-avatar="🎬">🎬</span>
+    <span class="avatar-choice" data-avatar="🎭">🎭</span>
+    <span class="avatar-choice" data-avatar="🍿">🍿</span>
+    <span class="avatar-choice" data-avatar="🎥">🎥</span>
+    <span class="avatar-choice" data-avatar="⭐">⭐</span>
+  </div>
+
+  <!-- Avatar sélectionné (caché, géré par le JS) -->
+  <input type="hidden" id="avatar-input" name="avatar" value="🎬">
+
+  <!-- Formulaire d'inscription -->
+  <form id="register-form">
+    <input type="text"     name="pseudo"   placeholder="Pseudo"        required>
+    <input type="email"    name="email"    placeholder="Email"         required>
+    <input type="password" name="password" placeholder="Mot de passe"  required>
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <!-- Message de succès ou d'erreur -->
+  <p id="register-message"></p>
+
+  <!-- Lien vers la connexion -->
+  <p>Déjà inscrit ? <a href="login.html">Connexion</a></p>
+
+</div>
+
+<!-- ─── SCRIPT ──────────────────────────────────────── -->
+<script src="js/authentification.js"></script>
+
+</body>
+</html>

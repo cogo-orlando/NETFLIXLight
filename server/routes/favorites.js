@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const { addFavorite, getFavorites, removeFavorite } = require("../logic/favorites");
 
-const { addFavorite, getFavorites, removeFavorite } = require("../controllers/favoritesController");
-router.delete("/:id", removeFavorite);
+// ─── ROUTES FAVORIS ──────────────────────────────────────
 
-router.post("/", addFavorite);
-
-router.get("/", getFavorites);
+router.get("/", getFavorites);          // Récupérer les favoris
+router.post("/", addFavorite);          // Ajouter un favori
+router.delete("/:id", removeFavorite);  // Supprimer un favori
 
 module.exports = router;
