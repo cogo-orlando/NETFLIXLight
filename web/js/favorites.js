@@ -1,10 +1,3 @@
-// ─── COULEUR PERSONNALISÉE ───────────────────────────────
-const savedColor = localStorage.getItem('accentColor');
-if (savedColor) {
-    document.documentElement.style.setProperty('--red', savedColor);
-    document.documentElement.style.setProperty('--red-light', savedColor);
-}
-
 const container = document.getElementById("favorites-container");
 const empty = document.getElementById("fav-empty");
 

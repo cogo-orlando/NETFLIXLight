@@ -1,10 +1,3 @@
-// ─── COULEUR PERSONNALISÉE ───────────────────────────────
-const savedColor = localStorage.getItem('accentColor');
-if (savedColor) {
-    document.documentElement.style.setProperty('--red', savedColor);
-    document.documentElement.style.setProperty('--red-light', savedColor);
-}
-
 let favorites = [];
 
 // ─── FAVORIS ─────────────────────────────────────────────
@@ -62,7 +55,7 @@ function createCard(film) {
         }
     });
 
-    return div; // ← accolade fermante de createCard
+    return div;
 }
 
 // ─── CRÉATION D'UNE SECTION DE FILMS ─────────────────────

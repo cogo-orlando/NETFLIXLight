@@ -103,11 +103,3 @@ document.getElementById('logout-btn').addEventListener('click', () => {
             window.location.href = '/'; // Redirige vers l'accueil
         });
 });
-
-// ─── COULEUR PERSONNALISÉE ───────────────────────────────
-// Applique la couleur sauvegardée par l'utilisateur
-const savedColor = localStorage.getItem('accentColor');
-if (savedColor) {
-    document.documentElement.style.setProperty('--red', savedColor);
-    document.documentElement.style.setProperty('--red-light', savedColor);
-}

@@ -1,10 +1,3 @@
-// ─── COULEUR PERSONNALISÉE ───────────────────────────────
-const savedColor = localStorage.getItem('accentColor');
-if (savedColor) {
-    document.documentElement.style.setProperty('--red', savedColor);
-    document.documentElement.style.setProperty('--red-light', savedColor);
-}
-
 // ─── RÉCUPÉRATION DE L'ID DU FILM DANS L'URL ─────────────
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
