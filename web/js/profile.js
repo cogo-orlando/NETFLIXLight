@@ -12,7 +12,6 @@ async function loadProfile() {
     const user = data.user;
 
     // Affiche les infos de l'utilisateur
-    document.getElementById('profile-avatar').textContent = user.avatar || '🎬';
     document.getElementById('profile-pseudo').textContent = user.pseudo;
     document.getElementById('profile-email').textContent = user.email;
     document.getElementById('profile-date').textContent = user.dateInscription

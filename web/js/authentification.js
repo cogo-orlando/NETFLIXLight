@@ -1,17 +1,6 @@
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
 
-// ─── SÉLECTION DE L'AVATAR ───────────────────────────────
-document.querySelectorAll('.avatar-choice').forEach(el => {
-    el.addEventListener('click', () => {
-        // Retire la sélection de tous les avatars
-        document.querySelectorAll('.avatar-choice').forEach(e => e.classList.remove('selected'));
-        // Sélectionne l'avatar cliqué
-        el.classList.add('selected');
-        document.getElementById('avatar-input').value = el.dataset.avatar;
-    });
-});
-
 // ─── INSCRIPTION ─────────────────────────────────────────
 if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
@@ -22,7 +11,6 @@ if (registerForm) {
             pseudo:   registerForm.pseudo.value,
             email:    registerForm.email.value,
             password: registerForm.password.value,
-            avatar:   document.getElementById('avatar-input').value
         };
 
         try {
@@ -38,7 +26,7 @@ if (registerForm) {
             // Si inscription réussie → sauvegarde et redirige
             if (result.user) {
                 sessionStorage.setItem('user', JSON.stringify(result.user));
-                window.location.href = '/';
+                window.location.href = '/films';
             }
         } catch (err) {
             document.getElementById('register-message').textContent = 'Erreur serveur';
@@ -70,7 +58,7 @@ if (loginForm) {
             // Si connexion réussie → sauvegarde et redirige
             if (result.user) {
                 sessionStorage.setItem('user', JSON.stringify(result.user));
-                window.location.href = '/';
+                window.location.href = '/films';
             }
         } catch (err) {
             document.getElementById('login-message').textContent = 'Erreur serveur';
@@ -84,22 +72,30 @@ fetch('/auth/me')
     .then(data => {
         if (data.user) {
             // Affiche le bouton déconnexion
-            document.getElementById('logout-btn').classList.remove('hidden');
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) logoutBtn.classList.remove('hidden');
 
-            // Affiche l'avatar et le pseudo
-            const avatar = document.getElementById('user-avatar');
-            if (avatar) {
-                avatar.classList.remove('hidden');
-                document.getElementById('avatar-letter').textContent = data.user.avatar || "🎬";
-                document.getElementById('avatar-pseudo').textContent = data.user.pseudo;
+            // Affiche le pseudo
+            const profileLink = document.getElementById('user-profile-link');
+            if (profileLink) {
+                profileLink.classList.remove('hidden');
+                profileLink.textContent = data.user.pseudo;
+                const sepProfile = document.getElementById('sep-profile');
+                if (sepProfile) sepProfile.classList.remove('hidden');
+                const sepLogout = document.getElementById('sep-logout');
+                if (sepLogout) sepLogout.classList.remove('hidden');
             }
         }
     });
 
 // ─── DÉCONNEXION ─────────────────────────────────────────
-document.getElementById('logout-btn').addEventListener('click', () => {
-    fetch('/auth/logout', { method: 'POST' })
-        .then(() => {
-            window.location.href = '/'; // Redirige vers l'accueil
-        });
-});
+const logoutBtn = document.getElementById('logout-btn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+        fetch('/auth/logout', { method: 'POST' })
+            .then(() => {
+                sessionStorage.removeItem('user');
+                window.location.href = '/films';
+            });
+    });
+}
