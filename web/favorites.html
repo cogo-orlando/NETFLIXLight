@@ -14,17 +14,21 @@
   <a href="index.html" class="btn-retour">← Retour</a>
 </div>
 
+
 <!-- ─── EN-TÊTE ─────────────────────────────────────── -->
 <div class="fav-hero">
   <h1 class="fav-title">Mes <span>Favoris</span></h1>
   <p id="fav-count">0 film</p>
+
   <!-- Barre de recherche dans les favoris -->
-  <input type="text" id="fav-search" placeholder="Rechercher un favori...">
+  <input type="text" id="fav-search" class="fav-search" placeholder="Rechercher un favori...">
 </div>
+
 
 <!-- ─── LISTE DES FAVORIS ────────────────────────────── -->
 <!-- Rempli automatiquement par favorites.js -->
 <div id="favorites-container" class="fav-grid"></div>
+
 
 <!-- ─── MESSAGE SI AUCUN FAVORI ─────────────────────── -->
 <!-- Affiché si la liste est vide -->
@@ -33,6 +37,7 @@
   <p>Aucun film dans vos favoris.</p>
   <a href="index.html">Parcourir les films</a>
 </div>
+
 
 <!-- ─── SCRIPT ──────────────────────────────────────── -->
 <script src="js/favorites.js"></script>
