@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const dotenv = require('dotenv');
+const WEB = path.join (__dirname, '../web');
 
 // Charge les variables d'environnement (.env)
 dotenv.config();
@@ -9,7 +10,7 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-// ─── CONFIGURATION ───────────────────────────────────────
+// ─── CONFIGURATION ─────
 // Permet de lire le JSON envoyé par le navigateur
 app.use(express.json());
 
@@ -20,35 +21,23 @@ app.use(session({
     saveUninitialized: false
 }));
 
-// ─── ROUTES ──────────────────────────────────────────────
-// Page home
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../web/home.html'));
-});
+// ─── PAGES ─────
 
-// Page des films
-app.get('/films', (req, res) => {
-    res.sendFile(path.join(__dirname, '../web/index.html'));
-});
+app.get('/', (req, res) => res.sendFile(`${WEB}/home.html`)); // Page home
+app.get('/films', (req, res) => res.sendFile(`${WEB}/films.html`)); // Page des films
 
-// Routes films
-app.use('/api', require('./routes/movies.js'));
+// ─── ROUTES ─────
+app.use('/api', require('./routes/movies.js')); // Routes films
+app.use('/auth', require('./routes/authentification.js')); // Routes connexion/inscription
+app.use('/api/favorites', require('./routes/favorites.js')); // Routes favoris
 
-// Routes connexion/inscription
-app.use('/auth', require('./routes/authentification.js'));
-
-// Routes favoris
-app.use('/api/favorites', require('./routes/favorites.js'));
-
-// ─── Sert les fichiers du site (HTML, CSS, JS)  ───────────────────────────────────
+// ─── Permet d'exporter les fichiers (HTML, CSS, JS)  ─────
 app.use(express.static(path.join(__dirname, '../web')));
 
-// ─── PAGE D'ERREUR 404 ───────────────────────────────────
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '../web/error.html'));
-});
+// ─── PAGE ERREUR 404 ──────
+app.use((req, res) => res.status(404).sendFile(`${WEB}/404`));
 
-// ─── DÉMARRAGE ───────────────────────────────────────────
+// ─── DÉMARRAGE ────
 app.listen(PORT, () => {
-    console.log(`🎬 Netflix Light tourne sur http://localhost:${PORT}`);
+    console.log(`🎬 NetflixLight tourne sur http://localhost:${PORT}`);
 });
