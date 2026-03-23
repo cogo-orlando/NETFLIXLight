@@ -13,9 +13,6 @@ const PORT = 3000;
 // Permet de lire le JSON envoyé par le navigateur
 app.use(express.json());
 
-// Sert les fichiers du site (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, '../web')));
-
 // Gère les sessions (pour retenir qui est connecté)
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secretkey',
@@ -24,8 +21,13 @@ app.use(session({
 }));
 
 // ─── ROUTES ──────────────────────────────────────────────
-// Page des films
+// Page home
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../web/home.html'));
+});
+
+// Page des films
+app.get('/films', (req, res) => {
     res.sendFile(path.join(__dirname, '../web/index.html'));
 });
 
@@ -37,6 +39,9 @@ app.use('/auth', require('./routes/authentification.js'));
 
 // Routes favoris
 app.use('/api/favorites', require('./routes/favorites.js'));
+
+// ─── Sert les fichiers du site (HTML, CSS, JS)  ───────────────────────────────────
+app.use(express.static(path.join(__dirname, '../web')));
 
 // ─── PAGE D'ERREUR 404 ───────────────────────────────────
 app.use((req, res) => {
