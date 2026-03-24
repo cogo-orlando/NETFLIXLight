@@ -24,7 +24,7 @@ app.use(session({
 // ─── PAGES ─────
 
 app.get('/', (req, res) => res.sendFile(`${WEB}/home.html`)); // Page home
-app.get('/films', (req, res) => res.sendFile(`${WEB}/films.html`)); // Page des films
+app.get('/films', (req, res) => res.sendFile(`${WEB}/index.html`)); // Page des films
 
 // ─── ROUTES ─────
 app.use('/api', require('./routes/movies.js')); // Routes films
@@ -35,7 +35,7 @@ app.use('/api/favorites', require('./routes/favorites.js')); // Routes favoris
 app.use(express.static(path.join(__dirname, '../web')));
 
 // ─── PAGE ERREUR 404 ──────
-app.use((req, res) => res.status(404).sendFile(`${WEB}/404`));
+app.use((req, res) => res.status(404).sendFile(`${WEB}/error.html`));
 
 // ─── DÉMARRAGE ────
 app.listen(PORT, () => {
