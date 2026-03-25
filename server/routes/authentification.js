@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, logoutUser, updateProfile, changePassword, deleteAccount } = require('../logic/authentification.js');
+const { registerUser, loginUser, logoutUser, updateProfile,} = require('../logic/authentification.js');
 
 // Routes authentifications
 

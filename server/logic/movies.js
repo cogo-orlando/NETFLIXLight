@@ -16,7 +16,7 @@ async function getTrending(req, res) {
             )
         );
 
-        // Formate les données pour n'garder que l'essentiel
+        // Formate les données pour garder que l'essentiel
         const films = reponses
             .flatMap(data => data.results)
             .filter(film => film.poster_path) // ignore les films sans affiche
@@ -42,7 +42,7 @@ async function getMovieDetails(req, res) {
         const reponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDB_API_KEY}&language=fr-FR`);
         const film = await reponse.json();
 
-        // Récupère les 5 premiers acteurs du film
+        // Récupèrer les 5 premiers acteurs du film
         const creditsReponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${TMDB_API_KEY}`);
         const credits = await creditsReponse.json();
         const acteurs = credits.cast.slice(0, 5).map(a => a.name);
@@ -64,6 +64,7 @@ async function getMovieDetails(req, res) {
 
 // Film par genre
 async function getByGenre(req, res) {
+
     // Liste des genres avec leur ID TMDB
     const genres = {
         action: 28,

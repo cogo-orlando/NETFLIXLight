@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-// Fichier qui stocke les favoris
+// Fichier qui stock les favoris
 const filePath = path.join(__dirname, "../stockage/favorites.json");
 
 // Ajouter un favoris
