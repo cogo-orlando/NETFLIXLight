@@ -68,18 +68,16 @@ body::before {
 }
 
 .title {
-    font-family: 'Century Gothic', sans-serif;
-    font-size: clamp(3.5rem, 9vw, 7rem);
-    font-weight: 700;
-    letter-spacing: 8px;
+    font-size: 90px;
+    font-weight: 900;
     text-transform: uppercase;
-    color: #fff;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #fcfcfc, #fffdfd, #f1f1f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-shadow:
-            0 4px 30px rgba(229,9,20,0.3),
-            0 0 80px rgba(229,9,20,0.1);
-    animation: fadeDown 0.8s ease both;
-    margin-bottom: 0;
-    line-height: 1;
+            0 0 10px rgb(241, 0, 0),
+            0 0 20px rgb(238, 231, 231);
 }
 
 .title::after {
@@ -187,16 +185,6 @@ body::before {
     box-shadow:
             0 16px 40px rgba(229,9,20,0.5),
             0 0 0 1px rgba(229,9,20,0.4);
-}
-
-.welcome-version {
-    position: fixed;
-    bottom: 2rem;
-    right: 3rem;
-    font-size: 0.55rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.15);
 }
 
 #particles {

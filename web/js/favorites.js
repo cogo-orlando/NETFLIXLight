@@ -34,8 +34,8 @@ function loadFavorites() {
                     <div class="fav-overlay">
                         <p class="fav-movie-title">${film.titre}</p>
                         <div class="fav-overlay-btns">
-                            <a href="details.html?id=${film.id}">Détails</a>
-                            <button class="fav-remove">✕ Retirer</button>
+                            <a href="details.html?id=${film.id}">Details</a>
+                            <button class="fav-remove">✕ Delete </button>
                         </div>
                     </div>
                 `;
@@ -58,7 +58,7 @@ function loadFavorites() {
                 });
             });
         })
-        .catch(err => console.error("Erreur chargement favoris :", err));
+        .catch(err => console.error("Favorites loading error :", err));
 }
 
 // Supprimer un favoris
@@ -67,7 +67,7 @@ function removeFavorite(id) {
         .then(res => {
             if (res.ok) loadFavorites(); // Recharge la liste après suppression
         })
-        .catch(err => console.error("Erreur suppression :", err));
+        .catch(err => console.error("Deletion error :", err));
 }
 
 // Charge les favoris au démarrage

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NetflixLight — Erreur</title>
+  <title>NetflixLight — Error</title>
   <link rel="stylesheet" href="css/error.css">
 </head>
 <body>
@@ -13,24 +13,25 @@
   <!-- Logo -->
   <div class="error-logo">Netflix<span>Light</span></div>
 
-  <!-- Code d'erreur (404, 500...) -->
+  <!-- Code d'erreur 401, 403, 404 et 500 -->
   <div class="error-screen">
     <p class="error-code" id="error-code">404</p>
   </div>
 
   <!-- Message d'erreur -->
-  <h1 class="error-title" id="error-title">Page introuvable</h1>
+  <h1 class="error-title" id="error-title">Page not found</h1>
   <p class="error-message" id="error-message">
-    Ce contenu n'est pas disponible sur NetflixLight.
+    This content is not available on NetflixLight.
   </p>
 
   <!-- Bouton retour -->
-  <a href="index.html" class="error-btn">⬅ Retour à l'accueil</a>
+  <a href="index.html" class="error-btn">⬅ Return to homepage</a>
 
 </div>
 
 <!-- Script -->
 <script>
+
   // Récupère le code d'erreur dans l'URL
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
@@ -39,16 +40,16 @@
   if (code) document.getElementById("error-code").textContent = code;
 
   if (code === "500") {
-    document.getElementById("error-title").textContent = "Erreur serveur";
-    document.getElementById("error-message").textContent = "Une erreur inattendue s'est produite.";
+    document.getElementById("error-title").textContent = "Server error";
+    document.getElementById("error-message").textContent = "An unexpected error has occurred.";
   }
   else if (code === "403") {
-    document.getElementById("error-title").textContent = "Accès refusé";
-    document.getElementById("error-message").textContent = "Vous n'avez pas la permission d'accéder à cette page.";
+    document.getElementById("error-title").textContent = "Access denied";
+    document.getElementById("error-message").textContent = "You do not have permission to access this page.";
   }
   else if (code === "401") {
-    document.getElementById("error-title").textContent = "Non autorisé";
-    document.getElementById("error-message").textContent = "Vous devez être connecté pour accéder à cette page.";
+    document.getElementById("error-title").textContent = "Not allowed";
+    document.getElementById("error-message").textContent = "You must be logged in to access this page.";
   }
 
 </script>

@@ -14,9 +14,6 @@ async function loadProfile() {
     // Affiche les infos de l'utilisateur
     document.getElementById('profile-pseudo').textContent = user.pseudo;
     document.getElementById('profile-email').textContent = user.email;
-    document.getElementById('profile-date').textContent = user.dateInscription
-        ? new Date(user.dateInscription).toLocaleDateString('fr-FR')
-        : 'Inconnue';
 
     // Affiche le nombre de favoris
     const favRes = await fetch('/api/favorites');

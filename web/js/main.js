@@ -143,7 +143,7 @@ async function loadHeroBanner(films) {
 
         btnPlay.href = `details.html?id=${film.id}`;
 
-        btnFav.textContent = favorites.some(f => f.id === film.id) ? '✓ Dans ma liste' : '+ Ma liste';
+        btnFav.textContent = favorites.some(f => f.id === film.id) ? '✓ In my list': '+ My list';
         btnFav.onclick = async () => {
             await addFavorite({ id: film.id, titre: film.titre, poster: film.poster });
             btnFav.textContent = '✓ Dans ma liste';
@@ -164,24 +164,24 @@ async function loadPage() {
     const container = document.getElementById("films-container");
 
     const labels = {
-        action: "🔥 Action",
-        comedy: "😂 Comédie",
-        horror: "👻 Horreur",
-        scifi:  "🚀 Science-Fiction",
-        drama:  "🎭 Drame"
+        action: "▶ Action",
+        comedy: "▶ Comedy",
+        horror: "▶ Horror",
+        scifi:  "▶ Science-Fiction",
+        drama:  "▶ Drama"
     };
 
     // Charge les films tendance
     const trendingData = await fetch('/api/trending').then(r => r.json());
     if (trendingData.films) {
         await loadHeroBanner(trendingData.films);
-        container.appendChild(createSection("🎬 Tendances de la semaine", trendingData.films.slice(0, 20)));
+        container.appendChild(createSection("▶ Trends of the week", trendingData.films.slice(0, 20)));
     }
 
     // Charge les films les mieux notés
     const topData = await fetch('/api/toprated').then(r => r.json());
     if (topData.films) {
-        container.appendChild(createSection("⭐ Les mieux notés", topData.films));
+        container.appendChild(createSection("▶ Top rated", topData.films));
     }
 
     // Charge les films par genre
