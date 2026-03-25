@@ -9,7 +9,7 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
 });
 
-// ─── CRÉATION DES PARTICULES ─────────────────────────────
+// Création de particules
 const particules = [];
 const NOMBRE = 80;
 
@@ -24,7 +24,7 @@ for (let i = 0; i < NOMBRE; i++) {
     });
 }
 
-// ─── ANIMATION ───────────────────────────────────────────
+// Animation
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 

@@ -1,9 +1,7 @@
-/* ─── FOND ───────────────────────────────────────────── */
 body::before {
     filter: blur(3px) brightness(0.15);
 }
 
-/* ─── LOGO ───────────────────────────────────────────── */
 .welcome-logo {
     position: fixed;
     top: 2rem;
@@ -20,7 +18,6 @@ body::before {
 
 .welcome-logo span { color: var(--text); }
 
-/* ─── PAGE ───────────────────────────────────────────── */
 .welcome-page {
     display: flex;
     flex-direction: column;
@@ -32,7 +29,6 @@ body::before {
     position: relative;
 }
 
-/* Ligne décorative verticale gauche */
 .welcome-page::before {
     content: "";
     position: fixed;
@@ -45,7 +41,6 @@ body::before {
     opacity: 0.4;
 }
 
-/* Ligne décorative verticale droite */
 .welcome-page::after {
     content: "";
     position: fixed;
@@ -58,7 +53,6 @@ body::before {
     opacity: 0.4;
 }
 
-/* ─── BADGE ───────────────────────────────────────────── */
 .welcome-badge {
     font-size: 0.6rem;
     letter-spacing: 6px;
@@ -73,8 +67,7 @@ body::before {
     background: rgba(229,9,20,0.05);
 }
 
-/* ─── TITRE ───────────────────────────────────────────── */
-.welcome-title {
+.title {
     font-family: 'Century Gothic', sans-serif;
     font-size: clamp(3.5rem, 9vw, 7rem);
     font-weight: 700;
@@ -89,7 +82,7 @@ body::before {
     line-height: 1;
 }
 
-.welcome-title::after {
+.title::after {
     content: "";
     display: block;
     width: 120px;
@@ -98,7 +91,6 @@ body::before {
     margin: 20px auto;
 }
 
-/* ─── SOUS-TITRE ─────────────────────────────────────── */
 .welcome-subtitle {
     font-size: 0.75rem;
     letter-spacing: 6px;
@@ -109,7 +101,6 @@ body::before {
     opacity: 0.7;
 }
 
-/* ─── FEATURES ───────────────────────────────────────── */
 .welcome-features {
     display: flex;
     gap: 0;
@@ -153,7 +144,6 @@ body::before {
     white-space: nowrap;
 }
 
-/* ─── BOUTON ─────────────────────────────────────────── */
 .welcome-btn {
     display: inline-flex;
     align-items: center;
@@ -177,7 +167,6 @@ body::before {
     overflow: hidden;
 }
 
-/* Effet brillant au hover */
 .welcome-btn::before {
     content: "";
     position: absolute;
@@ -200,7 +189,6 @@ body::before {
             0 0 0 1px rgba(229,9,20,0.4);
 }
 
-/* ─── NUMÉRO DE VERSION ──────────────────────────────── */
 .welcome-version {
     position: fixed;
     bottom: 2rem;
