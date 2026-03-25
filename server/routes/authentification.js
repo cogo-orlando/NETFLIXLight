@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { registerUser, loginUser, logoutUser, updateProfile, changePassword, deleteAccount } = require('../logic/authentification.js');
 
-// ─── ROUTES AUTHENTIFICATION ─────────────────────────────
+// Routes authentifications
 
 router.post('/register', registerUser);      // Inscription
 router.post('/login', loginUser);            // Connexion

@@ -3,7 +3,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 // Clé API pour accéder à la base de données de films TMDB
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
-// ─── FILMS TENDANCE ──────────────────────────────────────
+// Films tendances
 async function getTrending(req, res) {
     try {
         // Récupère 5 pages de films tendance (100 films au total)
@@ -34,7 +34,7 @@ async function getTrending(req, res) {
     }
 }
 
-// ─── DÉTAILS D'UN FILM ───────────────────────────────────
+// Détails d'un film
 async function getMovieDetails(req, res) {
     const id = req.params.id;
     try {
@@ -62,7 +62,7 @@ async function getMovieDetails(req, res) {
     }
 }
 
-// ─── FILMS PAR GENRE ─────────────────────────────────────
+// Film par genre
 async function getByGenre(req, res) {
     // Liste des genres avec leur ID TMDB
     const genres = {
@@ -101,7 +101,7 @@ async function getByGenre(req, res) {
     }
 }
 
-// ─── FILMS LES MIEUX NOTÉS ───────────────────────────────
+// Film les mieux notés
 async function getTopRated(req, res) {
     try {
         const reponse = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_API_KEY}&language=fr-FR`);
@@ -124,7 +124,7 @@ async function getTopRated(req, res) {
     }
 }
 
-// ─── BANDE ANNONCE D'UN FILM ─────────────────────────────
+// Bande d'annonce d'un film
 async function getMovieTrailer(req, res) {
     const id = req.params.id;
     try {

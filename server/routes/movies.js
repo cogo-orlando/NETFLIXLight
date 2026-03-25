@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getTrending, getMovieDetails, getByGenre, getTopRated, getMovieTrailer } = require('../logic/movies.js');
 
-// ─── ROUTES FILMS ─────────────────────────────────────────
+// Routes films
 
 router.get('/trending',          getTrending);       // Films tendance
 router.get('/toprated',          getTopRated);       // Films les mieux notés

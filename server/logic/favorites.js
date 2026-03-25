@@ -4,7 +4,7 @@ const path = require("path");
 // Fichier qui stocke les favoris
 const filePath = path.join(__dirname, "../stockage/favorites.json");
 
-// ─── AJOUTER UN FAVORI ───────────────────────────────────
+// Ajouter un favoris
 exports.addFavorite = (req, res) => {
     const film = req.body;
     const favorites = JSON.parse(fs.readFileSync(filePath));
@@ -21,14 +21,14 @@ exports.addFavorite = (req, res) => {
     res.json({ message: "Film ajouté aux favoris ✓" });
 };
 
-// ─── RÉCUPÉRER LES FAVORIS ───────────────────────────────
+// Récupérer les favoris
 exports.getFavorites = (req, res) => {
     // Lit et renvoie la liste des favoris
     const favorites = JSON.parse(fs.readFileSync(filePath));
     res.json(favorites);
 };
 
-// ─── SUPPRIMER UN FAVORI ─────────────────────────────────
+// Supprimer un favoris
 exports.removeFavorite = (req, res) => {
     const id = req.params.id;
     let favorites = JSON.parse(fs.readFileSync(filePath));
