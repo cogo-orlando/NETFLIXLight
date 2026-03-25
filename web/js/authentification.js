@@ -1,7 +1,7 @@
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form');
 
-// ─── INSCRIPTION ─────────────────────────────────────────
+// Inscription
 if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -34,7 +34,7 @@ if (registerForm) {
     });
 }
 
-// ─── CONNEXION ───────────────────────────────────────────
+// Connextion
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -66,7 +66,7 @@ if (loginForm) {
     });
 }
 
-// ─── VÉRIFICATION DE CONNEXION AU CHARGEMENT ─────────────
+// Vérification de la connexion
 fetch('/auth/me')
     .then(res => res.json())
     .then(data => {
@@ -88,7 +88,7 @@ fetch('/auth/me')
         }
     });
 
-// ─── DÉCONNEXION ─────────────────────────────────────────
+// Déconnexion
 const logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {

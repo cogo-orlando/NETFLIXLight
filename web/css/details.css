@@ -3,7 +3,6 @@
     position: relative;
 }
 
-/* Backdrop flouté derrière */
 .detail-backdrop {
     position: fixed;
     inset: 0;
@@ -14,7 +13,6 @@
     z-index: -1;
 }
 
-/* Layout principal */
 .detail-content {
     display: flex;
     gap: 3rem;
@@ -24,7 +22,6 @@
     align-items: flex-start;
 }
 
-/* Colonne gauche — affiche */
 .detail-left {
     flex-shrink: 0;
 }
@@ -35,7 +32,6 @@
     box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-/* Colonne droite — infos */
 .detail-right {
     display: flex;
     flex-direction: column;
@@ -93,7 +89,6 @@
     letter-spacing: 1px;
 }
 
-/* Bande annonce */
 .detail-trailer {
     margin-top: 0.5rem;
 }
@@ -113,7 +108,6 @@
     display: block;
 }
 
-/* Bouton retour dans topbar */
 .btn-retour {
     font-family: 'Century Gothic', sans-serif;
     font-size: 0.68rem;
@@ -130,7 +124,6 @@
     opacity: 1;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .detail-content {
         flex-direction: column;

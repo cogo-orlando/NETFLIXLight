@@ -1,4 +1,4 @@
-// ─── CHARGEMENT DU PROFIL ────────────────────────────────
+// Profil
 async function loadProfile() {
     const res = await fetch('/auth/me');
     const data = await res.json();

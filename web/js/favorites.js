@@ -1,7 +1,7 @@
 const container = document.getElementById("favorites-container");
 const empty = document.getElementById("fav-empty");
 
-// ─── CHARGER LES FAVORIS ─────────────────────────────────
+// Charger les favoris
 function loadFavorites() {
     container.innerHTML = "";
 
@@ -48,7 +48,7 @@ function loadFavorites() {
                 container.appendChild(card);
             });
 
-            // ─── RECHERCHE DANS LES FAVORIS ──────────────
+            // Barre de recherche
             document.getElementById("fav-search").addEventListener("input", function () {
                 const recherche = this.value.toLowerCase();
                 document.querySelectorAll(".fav-card").forEach(card => {
@@ -61,7 +61,7 @@ function loadFavorites() {
         .catch(err => console.error("Erreur chargement favoris :", err));
 }
 
-// ─── SUPPRIMER UN FAVORI ─────────────────────────────────
+// Supprimer un favoris
 function removeFavorite(id) {
     fetch(`/api/favorites/${id}`, { method: "DELETE" })
         .then(res => {

@@ -19,7 +19,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ── Fond ── */
 body::before {
     content: "";
     position: fixed;
@@ -42,7 +41,6 @@ body::after {
     opacity: 0.4;
 }
 
-/* ── Topbar ── */
 .topbar {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -73,7 +71,6 @@ body::after {
     gap: 6px;
 }
 
-/* ── Hero ── */
 .hero {
     display: flex;
     flex-direction: column;
@@ -114,7 +111,6 @@ h2 {
     animation: fadeDown 0.9s ease both;
 }
 
-/* ── Recherche ── */
 .fav-search {
     display: block;
     width: 100%;
@@ -139,7 +135,6 @@ h2 {
 
 .fav-search::placeholder { color: rgba(255,255,255,0.3); }
 
-/* ── Container films ── */
 #films-container {
     display: flex;
     flex-direction: column;
@@ -147,7 +142,6 @@ h2 {
     padding: 2rem 0 4rem;
 }
 
-/* ── Section ── */
 .film-section {
     padding: 1.5rem 3rem;
 }
@@ -176,7 +170,6 @@ h2 {
     flex-shrink: 0;
 }
 
-/* ── Ligne scrollable ── */
 .film-row {
     display: flex;
     flex-direction: row;
@@ -192,7 +185,6 @@ h2 {
 
 .film-row::-webkit-scrollbar { display: none; }
 
-/* ── Carte ── */
 .film-card {
     flex: 0 0 150px;
     width: 150px;
@@ -221,7 +213,6 @@ h2 {
     box-shadow: 0 16px 48px rgba(0,0,0,0.9), 0 0 0 1px var(--red);
 }
 
-/* Overlay */
 .film-overlay {
     position: absolute;
     top: 0; left: 0;
@@ -246,7 +237,6 @@ h2 {
     line-height: 1.4;
 }
 
-/* Infos sous la carte */
 .film-card h3 {
     font-size: 0.65rem;
     letter-spacing: 1px;
@@ -271,7 +261,6 @@ h2 {
 
 .film-note { color: var(--red); }
 
-/* Bouton favori */
 .favorite-btn {
     position: absolute;
     top: 6px;
@@ -296,7 +285,6 @@ h2 {
 .favorite-btn.active { color: var(--red); opacity: 1; }
 .favorite-btn:hover { transform: scale(1.2); background: rgba(0,0,0,0.95); }
 
-/* ── Liens nav ── */
 a {
     font-family: 'Century Gothic', sans-serif;
     font-size: 0.68rem;
@@ -333,7 +321,6 @@ a:hover { color: var(--text); opacity: 1; }
 
 .btn-logout:hover { color: var(--red); opacity: 1; }
 
-/* ── Avatar ── */
 .user-avatar {
     display: inline-flex;
     align-items: center;
@@ -359,7 +346,6 @@ a:hover { color: var(--text); opacity: 1; }
     color: var(--text-muted);
 }
 
-/* ── Formulaires ── */
 form {
     background: var(--dark-card);
     border: 1px solid rgba(229,9,20,0.15);
@@ -409,7 +395,6 @@ form button {
 
 form button:hover { transform: translateY(-2px); opacity: 0.85; }
 
-/* ── Avatars choix ── */
 .avatar-choice {
     font-size: 2rem;
     cursor: pointer;
@@ -422,7 +407,6 @@ form button:hover { transform: translateY(-2px); opacity: 0.85; }
 .avatar-choice:hover { transform: scale(1.2); }
 .avatar-choice.selected { border-color: var(--red); }
 
-/* ── Animations ── */
 @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -433,7 +417,6 @@ form button:hover { transform: translateY(-2px); opacity: 0.85; }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Utilitaire ── */
 .hidden { display: none !important; }
 
 .auth-page {
@@ -799,7 +782,6 @@ form button:hover { transform: translateY(-2px); opacity: 0.85; }
     opacity: 1;
 }
 
-/* Cache les séparateurs à côté des éléments cachés */
 #auth-buttons .hidden + .sep,
 #auth-buttons .sep:first-child {
     display: none;

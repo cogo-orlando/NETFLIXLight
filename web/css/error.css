@@ -13,7 +13,6 @@ body {
     overflow: hidden;
 }
 
-/* Fond animé */
 body::before {
     content: '';
     position: fixed;
@@ -35,7 +34,6 @@ body::before {
     z-index: 1;
 }
 
-/* Logo */
 .error-logo {
     font-family: 'Bebas Neue', cursive;
     font-size: 1.6rem;
@@ -49,7 +47,6 @@ body::before {
     color: #f0f0f0;
 }
 
-/* Écran TV */
 .error-screen {
     position: relative;
     width: 280px;
@@ -67,7 +64,6 @@ body::before {
     overflow: hidden;
 }
 
-/* Effet scanlines */
 .error-scanlines {
     position: absolute;
     inset: 0;
@@ -102,7 +98,6 @@ body::before {
     99%            { opacity: 1; }
 }
 
-/* Titre */
 .error-title {
     font-family: 'Bebas Neue', cursive;
     font-size: 2.2rem;
@@ -110,7 +105,6 @@ body::before {
     color: #f0f0f0;
 }
 
-/* Message */
 .error-message {
     color: #888;
     font-size: 0.9rem;
@@ -118,7 +112,6 @@ body::before {
     max-width: 340px;
 }
 
-/* Bouton */
 .error-btn {
     display: inline-block;
     background: #e50914;

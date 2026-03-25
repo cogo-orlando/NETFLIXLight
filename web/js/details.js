@@ -1,4 +1,4 @@
-// ─── RÉCUPÉRATION DE L'ID DU FILM DANS L'URL ─────────────
+// Récuperation de l'ID d'un film
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const container = document.getElementById("film-detail");
@@ -9,7 +9,7 @@ if (!id) {
 
 } else {
 
-    // ─── CHARGEMENT DES DONNÉES DU FILM ──────────────────
+    // Chargement des données d'un film
     // Récupère en même temps les détails et la bande annonce
     Promise.all([
         fetch(`/api/movie/${id}`).then(r => r.json()),
@@ -18,7 +18,7 @@ if (!id) {
         .then(([film, trailerData]) => {
             const trailerKey = trailerData.trailerKey;
 
-            // ─── AFFICHAGE DU FILM ────────────────────────────
+            // Affichage d'un film
             container.innerHTML = `
 
             <!-- Image de fond -->

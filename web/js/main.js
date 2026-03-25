@@ -1,6 +1,6 @@
 let favorites = [];
 
-// ─── FAVORIS ─────────────────────────────────────────────
+// Favoris
 async function loadFavorites() {
     const res = await fetch("/api/favorites");
     favorites = await res.json();
@@ -18,7 +18,7 @@ async function removeFavorite(id) {
     await fetch(`/api/favorites/${id}`, { method: "DELETE" });
 }
 
-// ─── CRÉATION D'UNE CARTE FILM ───────────────────────────
+// Création d'une carte film
 function createCard(film) {
     const isFavorite = favorites.some(f => f.id === film.id);
     const div = document.createElement('div');
@@ -58,7 +58,7 @@ function createCard(film) {
     return div;
 }
 
-// ─── CRÉATION D'UNE SECTION DE FILMS ─────────────────────
+// Création d'une section film
 function createSection(titre, films) {
     const section = document.createElement('div');
     section.className = "film-section";
@@ -83,7 +83,7 @@ function createSection(titre, films) {
     return section;
 }
 
-// ─── BANNIÈRE PRINCIPALE ─────────────────────────────────
+// Banière principal
 async function loadHeroBanner(films) {
     const heroFilms = films.slice(0, 8);
     let current = 0;
@@ -122,7 +122,7 @@ async function loadHeroBanner(films) {
         timer = setInterval(() => showFilm((current + 1) % heroFilms.length), 15000);
     }
 
-    // ─── AFFICHE UN FILM DANS LA BANNIÈRE ────────────────
+    // Affiche un film dans la banière
     async function showFilm(index) {
         current = index;
         const film = heroFilms[index];
@@ -158,7 +158,7 @@ async function loadHeroBanner(films) {
     resetTimer();
 }
 
-// ─── CHARGEMENT DE LA PAGE ───────────────────────────────
+// Chargement de la page
 async function loadPage() {
     await loadFavorites();
     const container = document.getElementById("films-container");

@@ -7,7 +7,6 @@
     gap: 2.5rem;
 }
 
-/* Header profil */
 .profile-header {
     display: flex;
     align-items: center;
@@ -55,7 +54,6 @@
     letter-spacing: 1px !important;
 }
 
-/* Stats */
 .profile-stats {
     display: flex;
     gap: 1rem;
@@ -88,7 +86,6 @@
     color: var(--text-muted);
 }
 
-/* Section modifier */
 .profile-section-title {
     font-size: 0.72rem;
     letter-spacing: 5px;
