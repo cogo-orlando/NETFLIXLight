@@ -10,7 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-// ─── CONFIGURATION ─────
+// Configuration
+
 // Permet de lire le JSON envoyé par le navigateur
 app.use(express.json());
 
@@ -21,23 +22,22 @@ app.use(session({
     saveUninitialized: false
 }));
 
-// ─── PAGES ─────
-
+// Pages
 app.get('/', (req, res) => res.sendFile(`${WEB}/home.html`)); // Page home
 app.get('/films', (req, res) => res.sendFile(`${WEB}/index.html`)); // Page des films
 
-// ─── ROUTES ─────
+// Routes
 app.use('/api', require('./routes/movies.js')); // Routes films
 app.use('/auth', require('./routes/authentification.js')); // Routes connexion/inscription
 app.use('/api/favorites', require('./routes/favorites.js')); // Routes favoris
 
-// ─── Permet d'exporter les fichiers (HTML, CSS, JS)  ─────
+// Permet d'exporter les fichiers (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, '../web')));
 
-// ─── PAGE ERREUR 404 ──────
+// PAGE ERREUR 404
 app.use((req, res) => res.status(404).sendFile(`${WEB}/error.html`));
 
-// ─── DÉMARRAGE ────
+// Lancement du serveur
 app.listen(PORT, () => {
     console.log(`🎬 NetflixLight tourne sur http://localhost:${PORT}`);
 });
