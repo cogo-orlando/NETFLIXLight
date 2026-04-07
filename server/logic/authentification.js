@@ -7,17 +7,17 @@ const usersFile = path.join(__dirname, '../stockage/users.json');
 
 // Inscription
 async function registerUser(req, res) {
-    const { email, pseudo, password, avatar } = req.body;
+    const { email, pseudo, password } = req.body;
 
     // Vérifie que tous les champs sont remplis
     if (!email || !pseudo || !password)
-        return res.status(400).json({ error: "Champs manquants" });
+        return res.status(400).json({ error: "Missing fields" });
 
     const users = readJSON(usersFile);
 
     // Vérifie que l'email n'est pas déjà utilisé
     if (users.find(u => u.email === email))
-        return res.status(400).json({ error: "Utilisateur existant" });
+        return res.status(400).json({ error: "Existing user" });
 
     // Chiffre le mot de passe avant de le sauvegarder
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,15 +27,13 @@ async function registerUser(req, res) {
         email,
         pseudo,
         password: hashedPassword,
-        avatar: avatar || "🎬",
-        dateInscription: new Date().toISOString()
     });
 
     writeJSON(usersFile, users);
 
     // Démarre la session
-    req.session.user = { email, pseudo, avatar: avatar || "🎬" };
-    res.json({ message: "Inscription réussie", user: { email, pseudo, avatar: avatar || "🎬" } });
+    req.session.user = { email, pseudo, };
+    res.json({ message: "Successful signup", user: { email, pseudo, } });
 }
 
 // Connexion
@@ -46,16 +44,16 @@ async function loginUser(req, res) {
     // Cherche l'utilisateur par email
     const user = users.find(u => u.email === email);
     if (!user)
-        return res.status(400).json({ error: "Utilisateur non trouvé" });
+        return res.status(400).json({ error: "User not found" });
 
     // Vérifie le mot de passe
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid)
-        return res.status(400).json({ error: "Mot de passe incorrect" });
+        return res.status(400).json({ error: "Incorrect password" });
 
     // Démarre la session
-    req.session.user = { email, pseudo: user.pseudo, avatar: user.avatar || "🎬" };
-    res.json({ message: "Connexion réussie", user: { email, pseudo: user.pseudo, avatar: user.avatar || "🎬" } });
+    req.session.user = { email, pseudo: user.pseudo, };
+    res.json({ message: "Login successful", user: { email, pseudo: user.pseudo, } });
 }
 
 // Déconnexion
@@ -64,26 +62,4 @@ function logoutUser(req, res) {
     res.json({ success: true });
 }
 
-// Modifier le profil
-async function updateProfile(req, res) {
-    const { pseudo, avatar } = req.body;
-    const email = req.session.user?.email;
-
-    // Vérifie que l'utilisateur est connecté
-    if (!email)
-        return res.status(401).json({ error: "Non connecté" });
-
-    let users = readJSON(usersFile);
-    const index = users.findIndex(u => u.email === email);
-
-    // Met à jour le pseudo
-    if (pseudo) users[index].pseudo = pseudo;
-
-    writeJSON(usersFile, users);
-
-    // Met à jour la session
-    req.session.user = { ...req.session.user, pseudo: users[index].pseudo, avatar: users[index].avatar };
-    res.json({ message: "Profil mis à jour ✓", user: req.session.user });
-}
-
-module.exports = { registerUser, loginUser, logoutUser, updateProfile, };
+module.exports = { registerUser, loginUser, logoutUser, };

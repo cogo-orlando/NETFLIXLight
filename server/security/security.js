@@ -7,7 +7,7 @@ function ensureAuth(req, res, next) {
     }
     // En cas on refuse l'accès
     else {
-        res.status(401).json({ error: "Non autorisé" });
+        res.status(401).json({ error: "Not allowed" });
     }
 }
 

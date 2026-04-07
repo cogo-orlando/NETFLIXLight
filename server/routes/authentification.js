@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, logoutUser, updateProfile,} = require('../logic/authentification.js');
+const { registerUser, loginUser, logoutUser, } = require('../logic/authentification.js');
 
 // Routes authentifications
 
 router.post('/register', registerUser);      // Inscription
 router.post('/login', loginUser);            // Connexion
 router.post('/logout', logoutUser);          // Déconnexion
-router.put('/profile', updateProfile);       // Modifier le profil
 
 // Vérifie si l'utilisateur est connecté
 router.get('/me', (req, res) => {

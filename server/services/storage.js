@@ -10,7 +10,7 @@ function readJSON(filePath) {
     try {
         return JSON.parse(data);
     } catch (err) {
-        console.error('Erreur lecture JSON :', err);
+        console.error('JSON reading error :', err);
         return [];
     }
 }

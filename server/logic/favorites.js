@@ -12,17 +12,18 @@ exports.addFavorite = (req, res) => {
     // Vérifie que le film n'est pas déjà dans les favoris
     const dejaPresent = favorites.some(f => String(f.id) === String(film.id));
     if (dejaPresent) {
-        return res.json({ message: "Déjà dans les favoris" });
+        return res.json({ message: "Already in favorites" });
     }
 
     // Ajoute le film et sauvegarde
     favorites.push(film);
     fs.writeFileSync(filePath, JSON.stringify(favorites, null, 2));
-    res.json({ message: "Film ajouté aux favoris ✓" });
+    res.json({ message: "Movie added to favorites ✓" });
 };
 
 // Récupérer les favoris
 exports.getFavorites = (req, res) => {
+
     // Lit et renvoie la liste des favoris
     const favorites = JSON.parse(fs.readFileSync(filePath));
     res.json(favorites);
@@ -36,5 +37,5 @@ exports.removeFavorite = (req, res) => {
     // Garde tous les films sauf celui à supprimer
     favorites = favorites.filter(film => String(film.id) !== String(id));
     fs.writeFileSync(filePath, JSON.stringify(favorites, null, 2));
-    res.json({ message: "Film retiré des favoris ✓" });
+    res.json({ message: "Film removed from favorites ✓" });
 };

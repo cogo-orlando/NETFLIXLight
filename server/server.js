@@ -39,5 +39,5 @@ app.use((req, res) => res.status(404).sendFile(`${WEB}/error.html`));
 
 // Lancement du serveur
 app.listen(PORT, () => {
-    console.log(`🎬 NetflixLight tourne sur http://localhost:${PORT}`);
+    console.log(`🎬 NetflixLight runs on http://localhost:${PORT}`);
 });
