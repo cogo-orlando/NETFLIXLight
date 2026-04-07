@@ -14,7 +14,7 @@ function loadFavorites() {
                 films.length === 0 ? "Aucun film" :
                     films.length === 1 ? "1 film" : `${films.length} films`;
 
-            // Si aucun favori → affiche le message vide
+            // Si il y a aucun favori ça affiche le message vide
             if (films.length === 0) {
                 empty.classList.remove("hidden");
                 return;
@@ -22,7 +22,7 @@ function loadFavorites() {
 
             empty.classList.add("hidden");
 
-            // Crée une carte pour chaque film favori
+            // Crée une carte pour chaques films favoris
             films.forEach((film, index) => {
                 const card = document.createElement("div");
                 card.classList.add("fav-card");

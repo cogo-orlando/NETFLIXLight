@@ -658,43 +658,6 @@ form button:hover { transform: translateY(-2px); opacity: 0.85; }
     flex: 1;
 }
 
-.playlist-btn {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    background: rgba(0,0,0,0.7);
-    border: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.75rem;
-    cursor: pointer;
-    color: white;
-    border-radius: 50%;
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, background 0.2s;
-    opacity: 0;
-    backdrop-filter: blur(4px);
-    z-index: 5;
-}
-
-.film-card:hover .playlist-btn { opacity: 1; }
-.playlist-btn:hover { background: rgba(229,9,20,0.8); transform: scale(1.1); }
-
-.playlist-menu {
-    position: absolute;
-    top: 36px;
-    left: 6px;
-    background: #181818;
-    border: 1px solid rgba(229,9,20,0.3);
-    border-radius: 6px;
-    z-index: 50;
-    min-width: 160px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-}
-
 .pm-item {
     padding: 0.6rem 1rem;
     font-size: 0.72rem;

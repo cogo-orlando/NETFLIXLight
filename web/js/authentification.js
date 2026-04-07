@@ -29,12 +29,12 @@ if (registerForm) {
                 window.location.href = '/films';
             }
         } catch (err) {
-            document.getElementById('register-message').textContent = 'Erreur serveur';
+            document.getElementById('register-message').textContent = 'Sever error';
         }
     });
 }
 
-// Connextion
+// Connexion
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -55,13 +55,13 @@ if (loginForm) {
             const result = await res.json();
             document.getElementById('login-message').textContent = result.message || result.error;
 
-            // Si connexion réussie → sauvegarde et redirige
+            // Connexion réussie ça sauvegarde et redirige vers la page des films
             if (result.user) {
                 sessionStorage.setItem('user', JSON.stringify(result.user));
                 window.location.href = '/films';
             }
         } catch (err) {
-            document.getElementById('login-message').textContent = 'Erreur serveur';
+            document.getElementById('login-message').textContent = 'Server error';
         }
     });
 }

@@ -5,11 +5,12 @@ const container = document.getElementById("film-detail");
 
 // Si pas d'ID dans l'URL → film introuvable
 if (!id) {
-    container.innerHTML = "<p>Film introuvable</p>";
+    container.innerHTML = "<p>Movie not found</p>";
 
 } else {
 
     // Chargement des données d'un film
+
     // Récupère en même temps les détails et la bande annonce
     Promise.all([
         fetch(`/api/movie/${id}`).then(r => r.json()),
@@ -49,14 +50,14 @@ if (!id) {
 
                     <!-- Acteurs -->
                     <div class="detail-cast">
-                        <span class="detail-label">Acteurs</span>
+                        <span class="detail-label">Actors</span>
                         <p>${film.acteurs?.join(", ")}</p>
                     </div>
 
-                    <!-- Bande annonce YouTube (si disponible) -->
+                    <!-- Bande annonce YouTube -->
                     ${trailerKey ? `
                     <div class="detail-trailer">
-                        <span class="detail-label">Bande annonce</span>
+                        <span class="detail-label">Trailer</span>
                         <div class="trailer-frame">
                             <iframe
                                 src="https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1"
@@ -72,8 +73,8 @@ if (!id) {
         `;
         })
         .catch(err => {
-            // En cas d'erreur → message d'erreur
-            container.innerHTML = "<p>Erreur chargement film</p>";
+            // En cas d'erreur
+            container.innerHTML = "<p>Movie loading error</p>";
             console.error(err);
         });
 }
