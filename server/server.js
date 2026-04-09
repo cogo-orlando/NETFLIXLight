@@ -15,7 +15,7 @@ const PORT = 3000;
 // Permet de lire le JSON envoyé par le navigateur
 app.use(express.json());
 
-// Gère les sessions (pour retenir qui est connecté)
+// Gère les sessions = pour savoir qui est connecter
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secretkey',
     resave: false,

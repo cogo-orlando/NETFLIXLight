@@ -6,7 +6,7 @@ const TMDB_API_KEY = process.env.TMDB_API_KEY;
 // Films tendances
 async function getTrending(req, res) {
     try {
-        // Récupère 5 pages de films tendance (100 films au total)
+        // Récupère 5 pages de films tendance (100 films au total) (1 pages = 20 films)
         const pages = [1, 2, 3, 4, 5];
 
         const reponses = await Promise.all(
