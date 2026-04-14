@@ -6,24 +6,24 @@ Une plateforme de streaming vidéo inspirée de Netflix, construite en JavaScrip
 
 ## Aperçu
 
-NetflixLight est un site web fonctionnel de plateforme de streaming. Il permet de naviguer dans un catalogue de films, de rechercher des contenus, de gérer une liste de favoris, et de visionner des bandes annonces. Les données proviennent de l'API TMDB.
+NetflixLight est un site web fonctionnel. Il permet de naviguer dans un catalogue de films, de rechercher des contenus, de gérer une liste de favoris, et de visionner des bandes annonces. Les données proviennent de l'API TMDB et les bandes annonces de Youtube.
 
 ---
 
 ## Fonctionnalités
 
-- **Authentification** : inscription, connexion, gestion de session, routes protégées
-- **Page d'accueil** : hero banner aléatoire (tendances, populaires, mieux notés, genres…)
-- **Page détail** : synopsis, acteurs, films, ajout aux favoris, bande annonces
-- **Recherche** : barre de recherche
+- **Authentification** : inscription, connexion, gestion de session, routes sécurisées
+- **Page d'accueil** : Film aléatoire (tendances, populaires, mieux notés, genres…)
+- **Page détail** : synopsis, acteurs, films, bande annonces...
+- **Recherche** : barre de recherche sur la page de film et dans la page favoris
 - **Favoris** : ajout/suppression d'un film dans la page favoris
 - **Bande annonce** : barre de progression, play/pause, volume, timer, plein écran
 
 ---
 
-## Stack technique
+## Technique
 
-| Couche | Technologie |
+| Partie | Technologie |
 |---|---|
 | Frontend | HTML5, CSS3, JavaScript |
 | Backend | Node.js, Express.js |
@@ -58,8 +58,7 @@ cp .env.example .env
 
 ```bash
 npm start
-# ou en mode développement :
-npm run dev
+
 ```
 
 L'application est accessible sur `http://localhost:3000`.
@@ -69,14 +68,12 @@ L'application est accessible sur `http://localhost:3000`.
 ## Configuration de l'API TMDB
 
 1. Créer un compte sur [themoviedb.org](https://www.themoviedb.org/)
-2. Aller dans **Paramètres → API** et générer une clé API (type "Developer")
-3. Renseigner les valeurs dans le fichier `.env` :
+2. Aller dans **Paramètres → API** et générer une clé API
+3. Renseigner la clé API dans le fichier `.env` :
 
 ```env
 TMDB_API_KEY=votre_clé_api_ici
-TMDB_BASE_URL=https://api.themoviedb.org/3
 SESSION_SECRET=une_chaîne_secrète_aléatoire
-PORT=3000
 ```
 
 ## Architecture du projet
@@ -85,7 +82,7 @@ PORT=3000
 netflixlight/
 │
 ├── server/                        # Backend Node.js / Express
-│   ├── logic/                     # Logique métier (accès aux données)
+│   ├── logic/                     # Logique 
 │   │   ├── authentification.js    # Inscription, connexion, gestion des users
 │   │   ├── favorites.js           # Lecture/écriture des favoris
 │   │   └── movies.js              # Appels vers l'API TMDB
@@ -106,18 +103,18 @@ netflixlight/
 │   │   ├── tmdb.js                # Cache / configuration TMDB
 │   │   └── users.json             # Utilisateurs enregistrés
 │   │
-│   ├── .env                       # Variables d'environnement (non commité)
+│   ├── .env                       # Variables d'environnement 
 │   ├── package.json
 │   ├── package-lock.json
 │   └── server.js                  # Point d'entrée Express
 │
-└── web/                           # Frontend (SPA vanilla JS)
-    ├── css/                       # Feuilles de style
-    ├── image/                     # Assets images
-    ├── js/                        # Scripts JavaScript (routing, composants…)
-    ├── details.html               # Page détail film / série
+└── web/                           # Frontend
+    ├── css/                       # Style
+    ├── image/                     # Images
+    ├── js/                        # Scripts JavaScript
+    ├── details.html               # Page détail film
     ├── error.html                 # Page d'erreur 404
-    ├── favorites.html             # Page Watchlist
+    ├── favorites.html             # Page favoris
     └── home.html                  # Page d'accueil
 ```
 
@@ -125,7 +122,7 @@ netflixlight/
 
 ## Choix techniques
 
-**JavaScript sans framework**
+**JavaScript**
 Le routing côté client est géré manuellement via l'API History sans librairie externe.
 
 **Architecture logic / routes / security séparée**
@@ -138,7 +135,7 @@ Les données utilisateurs et favoris sont stockées dans des fichiers JSON (`sto
 La clé TMDB est conservée dans `.env` et n'est jamais exposée au navigateur. Le frontend communique exclusivement avec le backend Express, qui joue le rôle de proxy vers TMDB.
 
 **Bande annonce**
-Construit sur l'élément `<video>` natif, avec les contrôles HTML natifs désactivés et remplacés par une interface JavaScript sur mesure. 
+Construit sur l'élément `<video>` natif, avec les contrôles HTML natifs désactivés et remplacés par une interface JavaScript. 
 
 ---
 
