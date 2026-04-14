@@ -171,7 +171,7 @@ async function loadPage() {
         drama:  "▶ Drama"
     };
 
-    // Charge les films tendance
+    // Charge les films en tendance
     const trendingData = await fetch('/api/trending').then(r => r.json());
     if (trendingData.films) {
         await loadHeroBanner(trendingData.films);

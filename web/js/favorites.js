@@ -40,7 +40,7 @@ function loadFavorites() {
                     </div>
                 `;
 
-                // Bouton supprimer un favori
+                // Bouton supprimer
                 card.querySelector(".fav-remove").addEventListener("click", () => {
                     removeFavorite(film.id);
                 });

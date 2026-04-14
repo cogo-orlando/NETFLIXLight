@@ -23,7 +23,7 @@ if (registerForm) {
             const result = await res.json();
             document.getElementById('register-message').textContent = result.message || result.error;
 
-            // Si inscription réussie → sauvegarde et redirige
+            // Si l'inscription est réussie, ca sauvegarde et redirige vers la page des films
             if (result.user) {
                 sessionStorage.setItem('user', JSON.stringify(result.user));
                 window.location.href = '/films';

@@ -2,7 +2,7 @@ async function loadProfile() {
     const res = await fetch('/auth/me');
     const data = await res.json();
 
-    // Si pas connecté → redirige vers la connexion
+    // Si personne est connecté, ca redirige directement vers la page de connexion
     if (!data.user) {
         window.location.href = 'login.html';
         return;

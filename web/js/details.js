@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const container = document.getElementById("film-detail");
 
-// Si pas d'ID dans l'URL → film introuvable
+// Si il y a pas d'ID dans l'URL → film introuvable
 if (!id) {
     container.innerHTML = "<p>Movie not found</p>";
 
@@ -38,7 +38,7 @@ if (!id) {
                 <div class="detail-right">
                     <h1 class="detail-title">${film.titre}</h1>
 
-                    <!-- Note, année, genres -->
+                    <!-- Affiche la note, l'année, le genres -->
                     <div class="detail-meta">
                         <span>★ ${film.note ? film.note.toFixed(1) : "?"}/10</span>
                         <span>${film.date_sortie ? film.date_sortie.slice(0,4) : ""}</span>
