@@ -2,6 +2,7 @@ const fs = require('fs');
 
 // Lit un fichier JSON
 function readJSON(filePath) {
+
     // Si le fichier n'existe pas, retourne une liste vide
     if (!fs.existsSync(filePath)) return [];
 
