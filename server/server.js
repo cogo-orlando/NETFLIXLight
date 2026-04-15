@@ -1,21 +1,20 @@
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const dotenv = require('dotenv');
+// Les imports
+const express = require('express');              //Utiliser Express.js
+const path = require('path');                   //Permet de gerer les chemins de fichiers
+const session = require('express-session');     //Gere les sessions
+const dotenv = require('dotenv');               //Permet de charger la clé API et Mots de passe dans le fichier .env
 const WEB = path.join (__dirname, '../web');
 
-// Charge les variables d'environnement (.env)
+// Charge le fichier (.env)
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuration
-
 // Permet de lire le JSON envoyé par le navigateur
 app.use(express.json());
 
-// Gère les sessions = pour savoir qui est connecter
+// Gère les sessions, pour savoir qui est connecter
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secretkey',
     resave: false,
@@ -31,7 +30,7 @@ app.use('/api', require('./routes/movies.js')); // Routes films
 app.use('/auth', require('./routes/authentification.js')); // Routes connexion/inscription
 app.use('/api/favorites', require('./routes/favorites.js')); // Routes favoris
 
-// Permet d'exporter les fichiers (HTML, CSS, JS)
+// Permet de servir les fichiers (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, '../web')));
 
 // PAGE ERREUR 404
