@@ -125,7 +125,7 @@ async function getTopRated(req, res) {
     }
 }
 
-// Bande d'annonce d'un film
+// Trailer d'un film
 async function getMovieTrailer(req, res) {
     const id = req.params.id;
     try {

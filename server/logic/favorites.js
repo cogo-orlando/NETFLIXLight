@@ -15,7 +15,7 @@ exports.addFavorite = (req, res) => {
         return res.json({ message: "Already in favorites" });
     }
 
-    // Ajoute le film et le sauvegarde
+    // Ajoute le film
     favorites.push(film);
     fs.writeFileSync(filePath, JSON.stringify(favorites, null, 2));
     res.json({ message: "Movie added to favorites ✓" });
