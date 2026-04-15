@@ -45,7 +45,7 @@ async function getMovieDetails(req, res) {
         // Récupèrer les 5 premiers acteurs du film
         const creditsReponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${TMDB_API_KEY}`);
         const credits = await creditsReponse.json();
-        const acteurs = credits.cast.slice(0, 5).map(a => a.name);
+        const acteurs = credits.cast.slice(0, 10).map(a => a.name);
 
         res.json({
             id: film.id,
@@ -62,7 +62,7 @@ async function getMovieDetails(req, res) {
     }
 }
 
-// Film par genre
+// Film genre
 async function getByGenre(req, res) {
 
     // Liste des genres avec leur ID TMDB
@@ -129,7 +129,7 @@ async function getTopRated(req, res) {
 async function getMovieTrailer(req, res) {
     const id = req.params.id;
     try {
-        // Cherche d'abord une bande annonce en français
+        // Cherche un trailer en français
         const reponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${TMDB_API_KEY}&language=fr-FR`);
         const data = await reponse.json();
         let trailer = data.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');

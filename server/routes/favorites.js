@@ -4,8 +4,8 @@ const { addFavorite, getFavorites, removeFavorite } = require("../logic/favorite
 
 // Routes favoris
 
-router.get("/", getFavorites);          // Récupérer les favoris
-router.post("/", addFavorite);          // Ajouter un favori
-router.delete("/:id", removeFavorite);  // Supprimer un favori
+router.get("/", getFavorites);          // Récupére les favoris
+router.post("/", addFavorite);          // Ajoute un favori
+router.delete("/:id", removeFavorite);  // Supprime un favori
 
 module.exports = router;

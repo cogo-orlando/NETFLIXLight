@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-// Lire un fichier JSON
+// Lit un fichier JSON
 function readJSON(filePath) {
     // Si le fichier n'existe pas, retourne une liste vide
     if (!fs.existsSync(filePath)) return [];
@@ -15,8 +15,9 @@ function readJSON(filePath) {
     }
 }
 
-// Ecrire dans un fichier JSON
+// Ecrie dans un fichier JSON
 function writeJSON(filePath, data) {
+
     // Convertit l'objet JavaScript en texte et sauvegarde
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }

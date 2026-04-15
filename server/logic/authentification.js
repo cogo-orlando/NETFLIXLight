@@ -9,7 +9,7 @@ const usersFile = path.join(__dirname, '../stockage/users.json');
 async function registerUser(req, res) {
     const { email, pseudo, password } = req.body;
 
-    // Vérifie que tous les champs sont remplis
+    // Vérifie que les champs sont remplis
     if (!email || !pseudo || !password)
         return res.status(400).json({ error: "Missing fields" });
 
